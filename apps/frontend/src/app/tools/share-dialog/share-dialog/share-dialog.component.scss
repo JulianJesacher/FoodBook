@@ -1,0 +1,47 @@
+.share-dialog {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+
+    --button-size: 5em;
+}
+
+h1 {
+    font-weight: 400;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    button {
+        width: var(--button-size);
+        height: var(--button-size);
+        border: none;
+        border-radius: calc(var(--button-size) / 2);
+    }
+}
+
+.button {
+    display: grid;
+    grid-template-rows: 80% 20%;
+    justify-items: center;
+    align-items: stretch;
+    margin: 0.5em;
+}
+
+#WhatsApp {
+    background-image: url('/assets/WhatsApp-logo.png');
+    background-position: center;
+    background-size: cover;
+}
+
+#clipboard {
+    background-color: hsl(0, 0, 18%);
+    position: relative;
+
+    i {
+        color: white;
+        font-size: calc(var(--button-size) / 2);
+    }
+}

@@ -1,0 +1,31 @@
+<mat-card class="post">
+    <mat-card-header>
+        <img mat-card-avatar [src]="post.postedBy.profilePicture" class="avatar" protectedImage (click)="navigateToProfile()" />
+        <mat-card-title [routerLink]="['/', 'dish', post.id]">{{ post.title }}</mat-card-title>
+        <mat-card-subtitle (click)="navigateToProfile()">{{ post.postedBy.username }}</mat-card-subtitle>
+        <i *ngIf="!post.isPublic" class="fa-solid fa-lock"></i>
+    </mat-card-header>
+
+    <app-image-slider mat-card-image [images]="post.images"></app-image-slider>
+    <mat-card-content>
+        <p>{{ post.description }}</p>
+    </mat-card-content>
+
+    <mat-card-actions>
+        <div class="action-buttons">
+            <button mat-raised-button (click)="openShareDialog()">SHARE<i class="fa-solid fa-share icon"></i></button>
+            <button *ngIf="!post.saved" mat-raised-button (click)="saveButtonClicked()">
+                SAVE<i class="fa-solid fa-bookmark icon"></i>
+            </button>
+            <button *ngIf="post.saved" mat-raised-button color="clicked" (click)="saveButtonClicked()">
+                REMOVE<i class="fa-solid fa-bookmark icon"></i>
+            </button>
+        </div>
+        <span>{{ post.time }} min</span>
+        <div class="action-info">
+            <span>{{ post.savedByAmount }}</span
+            ><i class="fa-solid fa-bookmark icon"></i>
+            <div class="rating-{{ getClassNumberFromRating(post.rating) }}"></div>
+        </div>
+    </mat-card-actions>
+</mat-card>

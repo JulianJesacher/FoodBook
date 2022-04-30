@@ -1,0 +1,113 @@
+<form [formGroup]="recipeForm!">
+    <div style="display: grid; justify-content: center">
+        <!--Title/Description-->
+        <div class="info-wrapper">
+            <mat-form-field appearance="outline">
+                <mat-label>Title</mat-label>
+                <input matInput formControlName="title" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Description</mat-label>
+                <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" formControlName="description">
+                </textarea>
+            </mat-form-field>
+        </div>
+
+        <div class="title-button-wrapper">
+            <h1>Ingredients</h1>
+            <button mat-flat-button color="warn" (click)="addIngredient()">Add ingredient</button>
+        </div>
+
+        <mat-card class="ingredient-card" *ngFor="let _ of ingredientsFormArray.controls; let i = index" formArrayName="ingredients">
+            <div [formGroupName]="i">
+                <input placeholder="Ingredient" type="text" formControlName="name" />
+                <div class="amount-wrapper">
+                    <p style="display: inline">Amount:</p>
+                    <input type="number" value="1" min="1" formControlName="amount" />
+                    <select id="unitSelector" formControlName="unit">
+                        <option>g</option>
+                        <option>ml</option>
+                        <option>pieces</option>
+                        <option>tbsp</option>
+                        <option>pinch</option>
+                    </select>
+                </div>
+                <button (click)="removeIngredient(i)"><i class="fa-solid fa-trash"></i></button>
+            </div>
+        </mat-card>
+
+        <!--Steps-->
+        <div class="title-button-wrapper">
+            <h1>Steps</h1>
+            <button mat-flat-button color="warn" (click)="addStep()">Add step</button>
+        </div>
+        <div cdkDropList (cdkDropListDropped)="drop($event)">
+            <mat-card cdkDrag cdkDragLockAxis="y" *ngFor="let _ of stepsFormArray.controls; let i = index" formArrayName="steps">
+                <div [formGroupName]="i" class="step-card">
+                    <button cdkDragHandle><i class="fa-solid fa-bars"></i></button>
+                    <p style="display: inline" id="stepNumber">{{ i + 1 }}</p>
+                    <textarea rows="4" cols="80" formControlName="content"></textarea>
+                    <button><i class="fa-solid fa-trash" (click)="removeStep(i)"></i></button>
+                </div>
+            </mat-card>
+        </div>
+
+        <!--Servings and time-->
+        <div class="servings-time">
+            <mat-form-field appearance="outline">
+                <mat-label>Servings</mat-label>
+                <input matInput type="number" min="1" formControlName="servings" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Preparation time</mat-label>
+                <input matInput type="number" min="1" formControlName="time" />
+            </mat-form-field>
+        </div>
+
+        <!--Images-->
+        <div class="title-button-wrapper">
+            <h1>Images</h1>
+            <div class="image-control-wrapper">
+                <div class="upload-wrapper">
+                    <label for="image-upload" class="mat-flat-button">Choose images</label>
+                    <input
+                        type="file"
+                        id="image-upload"
+                        #imageUpload
+                        multiple
+                        (change)="handleImageUpload()"
+                        accept="image/png, image/jpeg"
+                    />
+                </div>
+                <button *ngIf="imageFormArray.length > 0" mat-flat-button color="warn" (click)="removeAllImages()">
+                    Remove all images
+                </button>
+            </div>
+        </div>
+
+        <!--Image flexbox-->
+        <div class="image-flex-contaier">
+            <div *ngFor="let image of imageFormArray.value; let i = index">
+                <img [src]="image" class="image" protectedImage />
+                <button (click)="removeImage(i)"><i class="fa-solid fa-trash"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!--Upload/Delete/Publish Button-->
+    <div class="footer-button-wrapper">
+        <button mat-flat-button color="warn" class="add-button" (click)="uploadDish()">
+            Upload<i class="fa-solid fa-upload" style="margin-left: 1em"></i>
+        </button>
+        <button mat-flat-button color="warn" class="add-button" (click)="openDeleteDialog()">
+            Delete Post<i class="fa-solid fa-trash" style="margin-left: 1em"></i>
+        </button>
+        <button *ngIf="!recipeForm.value.isPublic" mat-flat-button color="warn" class="add-button" (click)="toggleVisibility()">
+            Publish<i class="fa-solid fa-lock-open" style="margin-left: 1em"></i>
+        </button>
+        <button *ngIf="recipeForm.value.isPublic" mat-flat-button color="warn" class="add-button" (click)="toggleVisibility()">
+            Set private<i class="fa-solid fa-lock" style="margin-left: 1em"></i>
+        </button>
+    </div>
+</form>

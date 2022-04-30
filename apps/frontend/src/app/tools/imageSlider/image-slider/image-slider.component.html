@@ -1,0 +1,12 @@
+<div class="wrapper">
+    <ng-container *ngIf="amountOfImages > 1">
+        <button class="next-image-btn" style="left: 1.5%; text-align: left" (click)="changeIndex(-1)">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+        <button class="next-image-btn" style="right: 1.5%; text-align: right" (click)="changeIndex(+1)">
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+    </ng-container>
+    <img [src]="images[currentIndex]" protectedImage/>
+</div>

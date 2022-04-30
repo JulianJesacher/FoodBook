@@ -1,0 +1,15 @@
+.posts-wrapper{
+    margin-top: 4.5em;
+}
+
+@media (min-width: 500px) {
+    .posts-wrapper {
+        font-size: 1.25rem;
+    }
+}
+
+@media (min-width: 700px) {
+    .posts-wrapper {
+        font-size: 1.5rem;
+    }
+}

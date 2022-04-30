@@ -1,0 +1,32 @@
+mat-dialog-content {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.input {
+    --star-size: 1.8em;
+    --star-color: rgba(100, 100, 100, 0.3);
+    --star-background: rgba(0, 0, 0, 0.7);
+
+    b {
+        font-size: var(--star-size);
+        cursor: pointer;
+    }
+    .selected {
+        color: var(--star-background);
+    }
+    .not-selected {
+        color: var(--star-color);
+    }
+}
+
+.error {
+    --star-size: 1.8em;
+    div {
+        b {
+            font-size: var(--star-size);
+            color: red;
+        }
+    }
+}

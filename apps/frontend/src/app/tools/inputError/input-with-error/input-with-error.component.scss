@@ -1,0 +1,41 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: fit-content;
+
+    --error-color: #f44336;
+}
+
+.text,
+.error {
+    margin-left: 2.5%;
+}
+
+.text{
+    transition: display 50s linear;
+}
+
+.error{
+    color: var(--error-color);
+}
+
+input{
+    width: 100%;
+    padding: 1em;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;    
+}
+
+.hidden{
+    display: none;
+    opacity: 0;
+}
+
+.visible{
+    display: auto;
+    opacity: 1;
+    transition: 50s linear;
+}

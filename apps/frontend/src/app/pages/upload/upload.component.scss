@@ -1,0 +1,206 @@
+mat-card {
+    background-color: rgba(20, 20, 20, 0.02);
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 98vw !important;
+    max-width: 50em;
+    padding: 1vh 0;
+    margin: 0.5vh 0;
+
+    input,
+    select {
+        height: 1em;
+        min-height: 20px;
+        min-width: 0;
+    }
+    select {
+        box-sizing: content-box;
+    }
+}
+
+.mat-form-field {
+    font-size: 0.9em;
+}
+
+.info-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1.5em;
+
+    .mat-form-field-appearance-outline {
+        width: 10em;
+    }
+}
+
+.title-button-wrapper {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+        text-align: center;
+        font-weight: 300;
+        font-size: 2em;
+    }
+
+    button, div, h1 {
+        margin: 0.2em 0;
+    }
+}
+
+.ingredient-card {
+    div {
+        width: 95%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        input,
+        div,
+        button {
+            flex-basis: 0;
+        }
+
+        input,
+        button {
+            flex-grow: 1;
+        }
+        div {
+            flex-grow: 3;
+            margin: 0 1em;
+        }
+    }
+
+    button{
+        background-color: transparent;
+    }
+
+    input[type='number'] {
+        width: 5em;
+    }
+
+    input,
+    select {
+        border-radius: 5px;
+        border: 1px solid rgba(0, 0, 0, 0.5);
+    }
+
+    .amount-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 0;
+        select {
+            padding: 1px 2px;
+        }
+        * {
+            margin-left: 6px;
+        }
+        p {
+            margin: 0;
+        }
+    }
+}
+
+.step-card {
+    width: 95%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    textarea {
+        resize: none;
+        max-width: 70%;
+    }
+}
+
+.image-control-wrapper {
+    display: flex;
+    align-items: center;
+
+    button {
+        margin-left: 1em;
+    }
+}
+
+.upload-wrapper {
+    margin: 0;
+
+    input[type='file'] {
+        display: none;
+    }
+
+    label {
+        color: white;
+        background-color: #f44336;
+    }
+}
+
+button {
+    border: none;
+    background-color: rgba(20, 20, 20, 0.02);
+    cursor: pointer;
+}
+
+.image-flex-contaier {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    div {
+        position: relative;
+    }
+
+    .image {
+        height: 5em;
+        width: 5em;
+        margin: 1em;
+        object-fit: cover;
+    }
+
+    button {
+        font-size: 1em;
+        color: white;
+        position: absolute;
+        top: 1.1em;
+        right: 1em;
+    }
+}
+
+.servings-time {
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+    .mat-form-field-appearance-outline {
+        margin: 0.5em;
+        width: 10em;
+    }
+}
+
+.footer-button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+        margin: 0.5em;
+    }
+}
+
+@media (min-width: 700px) {
+    form {
+        font-size: 1.2rem;
+    }
+
+    .ingredient-card > div {
+        div, button{
+            flex-grow: 1;
+        }
+        input{
+            flex-grow: 1.25;
+        }
+    }
+}

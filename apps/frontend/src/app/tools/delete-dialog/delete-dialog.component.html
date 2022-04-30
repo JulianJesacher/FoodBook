@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Title</h2>
+<mat-dialog-content class="mat-typography">
+    <p>Do you really want to delete this draft?</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
+    <button mat-button (click)="deleteDish()" >Delete</button>
+</mat-dialog-actions>

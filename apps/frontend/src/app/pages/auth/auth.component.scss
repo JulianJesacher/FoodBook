@@ -1,0 +1,64 @@
+.home-page{
+    width: 100%;
+    height: 100%;
+    background-image: url('/assets/auth-bg.jpg');
+    background-position: center;
+    background-size: cover;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+}
+
+.left-content{
+    padding: 1em;
+    margin-left: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    background-color: hsla(4, 90, 0, 0.4);
+    box-shadow: 1px 1px 5px 1px;
+
+    *{
+        color: white;
+    }
+
+    h1{
+        width: auto;
+        text-align: end;
+        font-size: 3.75em;
+        margin: 0 0 0em 0;
+    }
+    p{
+        width: auto;
+        font-size: 1.75em;
+        margin: 0 0 0.3em 0;
+    }
+    button{
+        font-size: 1.1em;
+        padding: 0.15em 0.75em;
+    }
+}
+
+@media (min-width: 700px){
+    .home-page{
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-content{
+        font-size: 1.25rem;
+    }
+}
+
+@media (min-width: 1000px){
+    .left-content{
+        font-size: 1.75rem;
+
+        button{
+            font-size: 1em;
+            padding: 0.25em 0.75em;
+        }
+    }
+}

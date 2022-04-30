@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Add rating</h2>
+
+<div>
+    <mat-dialog-content class="mat-typography" #ratingContainer>
+        <div *ngFor="let star of stars; let i = index" (click)="rate(i + 1)" class="input">
+            <b *ngIf="star === true" class="selected">★</b>
+            <b *ngIf="star === false" class="not-selected">★</b>
+        </div>
+    </mat-dialog-content>
+</div>
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button cdkFocusInitial (click)="submit()">Submit</button>
+</mat-dialog-actions>

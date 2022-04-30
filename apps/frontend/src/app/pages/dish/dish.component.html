@@ -1,0 +1,51 @@
+<div class="dish">
+    <div class="image-wrapper">
+        <app-image-slider [images]="dish?.images"></app-image-slider>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="header-wrapper">
+            <div class="header-left">
+                <img [src]="dish?.postedBy?.profilePicture" protectedImage />
+                <span> {{ dish?.postedBy.username }} </span>
+            </div>
+            <div class="header-right">
+                <h1>{{ dish?.title }}</h1>
+                <span>Preparation-time: {{ dish?.time }} min</span>
+            </div>
+        </div>
+
+        <p class="description">{{ dish?.description }}</p>
+
+        <div class="servings">
+            <mat-form-field appearance="outline">
+                <mat-label>Servings</mat-label>
+                <input matInput type="number" [formControl]="servingsInput" />
+            </mat-form-field>
+        </div>
+
+        <div class="ingredients">
+            <h2>Ingredients</h2>
+            <ul>
+                <li *ngFor="let ingredient of updatedIngredients">
+                    {{ ingredient.amount.toFixed(2) + ' ' + ingredient.unit + ' ' + ingredient.name }}
+                </li>
+            </ul>
+        </div>
+
+        <div class="steps">
+            <h2>Required steps</h2>
+            <ol>
+                <li *ngFor="let step of dish?.steps">{{ step.content }}</li>
+            </ol>
+        </div>
+
+        <div class="button-wrapper">
+            <button mat-button>SHARE<i class="fa-solid fa-share icon"></i></button>
+            <button *ngIf="!dish?.saved" mat-button>SAVE<i class="fa-solid fa-bookmark icon"></i></button>
+            <button *ngIf="dish?.saved" color="clicked" mat-button>REMOVE<i class="fa-solid fa-bookmark icon"></i></button>
+            <button mat-button (click)="openRatingDialog()">ADD RATING<i class="fa-solid fa-star icon"></i></button>
+            <button *ngIf="dish?.postedBy.userId === user.userId" mat-button [routerLink]="['/', 'upload', dish.id]">EDIT<i class="fa-solid fa-pen icon"></i></button>
+        </div>
+    </div>
+</div>
