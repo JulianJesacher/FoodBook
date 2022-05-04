@@ -10,7 +10,7 @@ export class PasswordResetCode extends BaseEntity {
     user: User;
 
     @CreateDateColumn()
-    created: Date;
+    createdAt: Date;
 
     constructor(user: User) {
         super();

@@ -4,7 +4,7 @@ import { User } from '../entity/User.entity';
 import { ProfilePictureStorage } from '../helper/storage.helper';
 
 export class UserMiddleware {
-    public static async RetrieveFullUser(req: Request, res: Response, next: express.NextFunction): Promise<unknown> {
+    public static async retrieveFullUser(req: Request, res: Response, next: express.NextFunction): Promise<unknown> {
         const userId: string = res.locals.user.userId;
 
         const user: User = await User.findOne({
@@ -23,7 +23,7 @@ export class UserMiddleware {
         const userId: string = req.url.split('.')[0].substring(1);
         const fileEnding: string = await ProfilePictureStorage.getFileEnding(userId);
         if(!fileEnding){
-            req.url = 
+            req.url =
         }
         req.url = `/${userId}.${fileEnding}`;
         console.log(req.url);

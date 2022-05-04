@@ -40,7 +40,6 @@ import { ProtectedImageDirective } from './directives/protectedImage/protected-i
 import { PostContainerComponent } from './tools/postContainer/post-container/post-container.component';
 import { ImageSliderComponent } from './tools/imageSlider/image-slider/image-slider.component';
 import { ShareDialogComponent } from './tools/share-dialog/share-dialog/share-dialog.component';
-import { InputWithErrorComponent } from './tools/inputError/input-with-error/input-with-error.component';
 import { ResetPasswordComponent } from './pages/resetPassword/reset-password/reset-password.component';
 
 function initializeUser(userDataService: UserDataService): () => Observable<any> {
@@ -65,7 +64,6 @@ function initializeUser(userDataService: UserDataService): () => Observable<any>
         PostContainerComponent,
         ImageSliderComponent,
         ShareDialogComponent,
-        InputWithErrorComponent,
         ResetPasswordComponent,
     ],
     imports: [

@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import express = require('express');
+import * as express from 'express';
 import { createConnection } from 'typeorm';
 import { RootRouter } from './routes/root.controller';
 import { User } from './entity/User.entity';

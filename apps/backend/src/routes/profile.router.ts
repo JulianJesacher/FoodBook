@@ -10,7 +10,7 @@ ProfileRouter.use(jwtmiddleware.loggerMiddleware);
 ProfileRouter.use('/images', express.static(process.env.PROFILE_IMAGES_DEST));
 
 ProfileRouter.get('/:profileId', ProfileController.getProfile);
-ProfileRouter.put('/:profileId', UserMiddleware.RetrieveFullUser, ProfileController.update);
+ProfileRouter.put('/:profileId', UserMiddleware.retrieveFullUser, ProfileController.update);
 
 ProfileRouter.post(
     '/:profileId/image',

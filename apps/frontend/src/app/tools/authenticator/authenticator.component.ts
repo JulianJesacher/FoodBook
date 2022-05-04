@@ -110,7 +110,7 @@ export class AuthenticatorComponent implements OnInit {
 
     onForgotPasswordClick() {
         const currentForm: FormGroup = this.getCurrentForm();
-        this.authService.resetPassword(currentForm.value.email).subscribe();
+        this.authService.requestResetPassword(currentForm.value.email).subscribe();
     }
 
     private getCurrentForm(): FormGroup {

@@ -48,8 +48,8 @@ DishRouter.delete(
     IngredientController.removeIngredient
 );
 
-DishRouter.post('/:dishId/save', DishMiddleware.retrieveDish, UserMiddleware.RetrieveFullUser, DishController.handleSaveOperation);
+DishRouter.post('/:dishId/save', DishMiddleware.retrieveDish, UserMiddleware.retrieveFullUser, DishController.handleSaveOperation);
 
-DishRouter.post('/:dishId/rate', DishMiddleware.retrieveDish, UserMiddleware.RetrieveFullUser, DishController.handleRatingOperation);
+DishRouter.post('/:dishId/rate', DishMiddleware.retrieveDish, UserMiddleware.retrieveFullUser, DishController.handleRatingOperation);
 
 DishRouter.post('/:dishId/visibility', DishMiddleware.changedByCreator, DishController.handleVisibilityChange);

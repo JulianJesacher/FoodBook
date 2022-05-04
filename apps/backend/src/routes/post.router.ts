@@ -8,4 +8,4 @@ PostRouter.use(jwtmiddleware.loggerMiddleware);
 
 PostRouter.get('/', PostController.handleGetPostsRequest);
 
-PostRouter.get('/saved', UserMiddleware.RetrieveFullUser, PostController.getSavedPosts);
+PostRouter.get('/saved', UserMiddleware.retrieveFullUser, PostController.getSavedPosts);

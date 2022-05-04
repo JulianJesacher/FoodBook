@@ -44,6 +44,10 @@ export class User extends BaseEntity {
         this.password = getHash(`${newCredentials.username}${newCredentials.password}`);
     }
 
+    changePassword(newPassword: string){
+      this.password = getHash(`${this.username}${newPassword}`);
+    }
+
     passwordMatches(password: string): boolean {
         if (!password) {
             return false;
