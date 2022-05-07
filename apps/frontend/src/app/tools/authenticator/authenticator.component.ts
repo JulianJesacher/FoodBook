@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthenticatorServiceInterface } from '../../services/authService/authenticator.service';
+import { ExistValidators } from '../../Validators/existsValidators';
 
 @Component({
     selector: 'app-authenticator',
@@ -14,8 +15,6 @@ export class AuthenticatorComponent implements OnInit {
     loginForm?: FormGroup;
     signUpForm?: FormGroup;
     forgotPasswordForm?: FormGroup;
-
-    x : FormGroup;
 
     constructor(private authService: AuthenticatorServiceInterface, private fb: FormBuilder, private router: Router) {}
 
@@ -35,14 +34,6 @@ export class AuthenticatorComponent implements OnInit {
             password: this.fb.control(null, [Validators.required]),
             passwordRepeat: this.fb.control(null, [Validators.required]),
         });
-
-        this.x = this.fb.group({test: this.fb.control("x", [Validators.required])});
-        this.x.get('s')
-        this.x.valueChanges.subscribe(console.log);
-    }
-
-    getXTest(){
-        return this.x.get('test') as FormControl;
     }
 
     onForgotPasswordChange(): void {

@@ -22,3 +22,5 @@ AuthRouter.get('/current-user', jwtmiddleware.loggerMiddleware, async (req: Requ
 })
 
 AuthRouter.get('/userExists/:username', UserController.usernameExists);
+
+AuthRouter.get('/userExists/:email', UserController.emailExists);

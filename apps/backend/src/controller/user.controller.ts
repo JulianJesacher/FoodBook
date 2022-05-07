@@ -94,4 +94,8 @@ export class UserController {
   public static async usernameExists(req: Request, res: Response) : Promise<boolean> {
     return await User.createQueryBuilder().where("username = :username", {username: req.params.username}).getOne() !== undefined;
   }
+
+  public static async emailExists(req: Request, res: Response) : Promise<boolean> {
+    return await User.createQueryBuilder().where("email = :email", {username: req.params.email}).getOne() !== undefined;
+  }
 }
