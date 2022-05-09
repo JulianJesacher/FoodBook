@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthenticatorServiceInterface } from '../../services/authService/authenticator.service';
-import { ExistValidators } from '../../Validators/existsValidators';
+import { usernameExists} from '../../Validators/existsValidators';
 
 @Component({
     selector: 'app-authenticator',
@@ -30,7 +30,7 @@ export class AuthenticatorComponent implements OnInit {
 
         this.signUpForm = this.fb.group({
             email: this.fb.control(null, [Validators.required]),
-            username: this.fb.control(null, [Validators.required]),
+            username: this.fb.control(null, [Validators.required], [usernameExists(this.authService)]),
             password: this.fb.control(null, [Validators.required]),
             passwordRepeat: this.fb.control(null, [Validators.required]),
         });

@@ -91,8 +91,9 @@ export class UserController {
     return res.sendStatus(200);
   }
 
-  public static async usernameExists(req: Request, res: Response) : Promise<boolean> {
-    return await User.createQueryBuilder().where("username = :username", {username: req.params.username}).getOne() !== undefined;
+  public static async usernameExists(req: Request, res: Response) : Promise<void> {
+    const exists = await User.createQueryBuilder().where("username = :username", {username: req.params.username}).getOne() !== undefined;
+    res.status(200).send(exists);
   }
 
   public static async emailExists(req: Request, res: Response) : Promise<boolean> {
