@@ -28,19 +28,13 @@ async function runServer(): Promise<void> {
         entities: [User, Dish, Step, UserToken, Ingredient, Rating, PasswordResetCode],
     })
         .then((connection) => {
-            cron.schedule('* * * * *', async () => {
+            cron.schedule('0 * * * *', async () => {
                 const deletedDishIds = (await Dish.createQueryBuilder('dish').delete().where('title=""').output('id').execute()).raw.map(
                     (packet) => packet.id
                 );
                 deletedDishIds.forEach((id) => DishPictureStorage.removeDirectoryAndAllImages(id));
             });
 
-            //SELECT dish.* FROM dish, user_saved_dish WHERE dish.id = user_saved_dish.dishId AND user_saved_dish.userId = "fa6sb4a6-033b-43a4-90ce-42d928ca3b23"
-
-            /*         const userId = "fa6ab4a6-033b-43a4-90ce-42d928ca3b23"
-        Dish.createQueryBuilder().select("Dish.*").where("Dish.id = usd.dishId").andWhere("usd.userId = :userId", { userId: userId }).from("user_saved_dish", "usd").getMany().then(console.log);
-        console.log(Dish.createQueryBuilder().select("*").where("Dish.id = usd.dishId").andWhere("usd.userId = :userId", { userId: userId }).from("user_saved_dish", "usd").getSql());
-         */
             app.listen(3000);
             console.log('Server listening on port 3000');
         })
