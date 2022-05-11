@@ -1,46 +1,21 @@
-#authenticator {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1em;
-    box-sizing: border-box;
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-#authenticator-content {
-    min-width: 100%;
-    padding: 1.5em;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    box-shadow: none;
+form > mat-error {
+  padding-bottom: 1.175em;
 }
 
-.changeStateButtons{
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+.changeStateButtons {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 
-    button{
-        font-size: 0.9em;
-    }
-}
-
-button {
-    margin: 0.5em;
-}
-
-input {
-    width: 100%;
-    padding: 1em;
-    margin: 0.5em 0;
-    border-radius: 5px;
-    outline: none;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    box-sizing: border-box;
-}
-
-@media (min-width: 400px){
-    #authenticator-content{
-        width: auto;
-        min-width: 0;
-    }
+  button {
+    font-size: 0.9em;
+  }
 }

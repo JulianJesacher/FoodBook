@@ -1,40 +1,118 @@
-<div id="authenticator">
-    <mat-card id="authenticator-content">
-        <mat-card-header>
-            <mat-card-title>{{ getStateText() }}</mat-card-title>
-        </mat-card-header>
+<div class="authenticator">
+  <mat-card class="authenticator-content">
+    <mat-card-header>
+      <mat-card-title>{{ getStateText() }}</mat-card-title>
+    </mat-card-header>
 
-        <div *ngIf="isLoginState()">
-            <form [formGroup]="loginForm!">
-                <input placeholder="Email" formControlName="email" id="login-email" />
-                <input placeholder="Password" type="password" formControlName="password" id="login-password" />
-                <button mat-flat-button color="warn" (click)="onLoginClick()">Login</button>
-            </form>
-        </div>
+    <div *ngIf="isLoginState()">
+      <form [formGroup]="loginForm!">
 
-        <div *ngIf="isSignUpState()">
-            <form [formGroup]="signUpForm!">
-                <input placeholder="Email" formControlName="email" id="signup-email" />
-                <input placeholder="Username" formControlName="username" id="signup-name" />
-                <input placeholder="Password" type="password" formControlName="password" id="signup-password" />
-                <input placeholder="Confirm Password" type="password" formControlName="passwordRepeat" id="signup-password-repeat" />
-                <button mat-flat-button color="warn" (click)="onCreateAccountClick()">Create Account</button>
-            </form>
-        </div>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email"/>
+          <mat-error *ngIf="loginForm.get('email').hasError('required')">
+            Email is
+            <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
 
-        <div *ngIf="isForgotPasswordState()">
-            <form [formGroup]="forgotPasswordForm!">
-                <input placeholder="Email" formControlName="email" />
-                <button mat-flat-button color="warn" (click)="onForgotPasswordClick()">Reset Password</button>
-            </form>
-        </div>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password"/>
+          <mat-error *ngIf="loginForm.get('password').hasError('required')">
+            Password is
+            <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
 
-        <mat-card-actions align="end">
-            <div class="changeStateButtons">
-                <button mat-flat-button (click)="onForgotPasswordChange()">Forgot Password</button>
-                <button mat-flat-button (click)="onSignUpChange()">Sign up</button>
-                <button mat-flat-button (click)="onLoginChange()">Login</button>
-            </div>
-        </mat-card-actions>
-    </mat-card>
+        <button mat-flat-button color="warn" (click)="onLoginClick()">Login</button>
+      </form>
+    </div>
+
+    <div *ngIf="isSignUpState()">
+      <form [formGroup]="signUpForm!">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email"/>
+          <mat-error *ngIf="signUpForm.get('email').hasError('required')">
+            Email is
+            <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="signUpForm.get('email').hasError('emailExists')">
+            Email already registered
+          </mat-error>
+          <mat-error *ngIf="signUpForm.get('email').hasError('email')">
+            Not a valid email
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="username"/>
+          <mat-error *ngIf="signUpForm.get('username').hasError('required')">
+            Username is
+            <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="signUpForm.get('username').hasError('usernameExists')">
+            Username already registered
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password"/>
+          <mat-error *ngIf="signUpForm.get('password').hasError('required')">
+            Password is
+            <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="signUpForm.get('password').hasError('minLength')">
+            Password too short
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Repeat Password</mat-label>
+          <input matInput type="password" formControlName="passwordRepeat"/>
+          <mat-error *ngIf="signUpForm.get('passwordRepeat').hasError('required')">
+            Password is
+            <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-error *ngIf="signUpForm.hasError('equalValues')">
+          The passwords don´t match.
+        </mat-error>
+
+        <button mat-flat-button color="warn" (click)="onCreateAccountClick()">Create Account</button>
+      </form>
+    </div>
+
+    <div *ngIf="isForgotPasswordState()">
+      <form [formGroup]="forgotPasswordForm!">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email"/>
+          <mat-error *ngIf="forgotPasswordForm.get('email').hasError('required')">
+            Email is
+            <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="forgotPasswordForm.get('email').hasError('email')">
+            Not a valid email
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-flat-button color="warn" (click)="onForgotPasswordClick()">Reset Password</button>
+      </form>
+    </div>
+
+    <mat-card-actions align="end">
+      <div class="changeStateButtons">
+        <button mat-flat-button (click)="onForgotPasswordChange()">Forgot Password</button>
+        <button mat-flat-button (click)="onSignUpChange()">Sign up</button>
+        <button mat-flat-button (click)="onLoginChange()">Login</button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
 </div>

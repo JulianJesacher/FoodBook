@@ -11,28 +11,20 @@ export function usernameExists(authService: AuthenticatorServiceInterface): Asyn
   return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
     if (control instanceof FormControl) {
       return authService.userExists(control.value).pipe(
-        tap(console.log),
-        map(exists => exists === false ? null : {emailExists: {email: control.value}})
+        map(exists => exists === false ? null : {usernameExists: {username: control.value}})
       );
     }
-
     return null;
   }
 }
 
-
-export class EmailExistsValidator {
-
-  constructor(private authService: AuthService) {
-  }
-
-  public emailExists(control: AbstractControl): Observable<ValidationErrors | null> {
+export function emailExists(authService: AuthenticatorServiceInterface): AsyncValidatorFn {
+  return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
     if (control instanceof FormControl) {
-      return this.authService.emailExists(control.value).pipe(
-        map(x => x === true ? null : {emailExists: {email: control.value}})
+      return authService.emailExists(control.value).pipe(
+        map(exists => exists === false ? null : {emailExists: {email: control.value}})
       );
     }
-
     return null;
   }
 }
