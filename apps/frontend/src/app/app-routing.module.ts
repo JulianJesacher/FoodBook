@@ -6,13 +6,14 @@ import { DishComponent } from './pages/dish/dish.component';
 import { UploadComponent } from './pages/upload/upload.component';
 import { MainComponent } from './pages/main/main.component';
 import { ResetPasswordComponent } from './pages/resetPassword/reset-password/reset-password.component';
+import {AuthGuard} from "./services/authGuardService/auth.guard";
 
 const routes: Routes = [
     { path: '', component: AuthComponent },
-    { path: 'profile/:id', component: ProfileComponent },
-    { path: 'dish/:id', component: DishComponent },
-    { path: 'upload/:id', component: UploadComponent },
-    { path: 'home', component: MainComponent },
+    { path: 'profile/:id', component: ProfileComponent, canActivate: [AuthGuard] },
+    { path: 'dish/:id', component: DishComponent, canActivate: [AuthGuard] },
+    { path: 'upload/:id', component: UploadComponent, canActivate: [AuthGuard] },
+    { path: 'home', component: MainComponent, canActivate: [AuthGuard] },
     { path: 'resetPassword', component: ResetPasswordComponent },
     { path: '**', component: AuthComponent, data: { navBar: true } },
 ];
