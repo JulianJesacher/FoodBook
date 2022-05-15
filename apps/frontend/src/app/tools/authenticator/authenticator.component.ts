@@ -11,7 +11,7 @@ import {equalValues} from "../../Validators/equalValue";
   styleUrls: ['./authenticator.component.scss'],
 })
 export class AuthenticatorComponent implements OnInit {
-  state: AuthentificatorCompState = AuthentificatorCompState.LOGIN;
+  state: string = AuthentificatorCompState.LOGIN;
   AuthentificatorCompState = AuthentificatorCompState;
 
   loginForm?: FormGroup;
@@ -54,29 +54,11 @@ export class AuthenticatorComponent implements OnInit {
     this.state = AuthentificatorCompState.SIGN_UP;
   }
 
-  isLoginState(): boolean {
-    return this.state == AuthentificatorCompState.LOGIN;
-  }
-
-  isSignUpState(): boolean {
-    return this.state == AuthentificatorCompState.SIGN_UP;
-  }
-
-  isForgotPasswordState(): boolean {
-    return this.state == AuthentificatorCompState.FORGOT_PASSWORD;
-  }
-
-  getStateText(): string {
-    return this.state;
-  }
-
   onCreateAccountClick() {
     if (this.signUpForm.invalid) {
-      console.log('Error');
       return;
     }
 
-    console.log(this.signUpForm.value)
     this.authService.signUp(this.signUpForm.value).subscribe({
       next: () => {
         this.router.navigateByUrl('/home');
@@ -107,8 +89,8 @@ export class AuthenticatorComponent implements OnInit {
   }
 }
 
-enum AuthentificatorCompState {
-  LOGIN = 'Login',
-  SIGN_UP = 'Sign up',
-  FORGOT_PASSWORD = 'Reset Password',
+const AuthentificatorCompState = {
+  LOGIN: 'Login',
+  SIGN_UP: 'Sign up',
+  FORGOT_PASSWORD: 'Reset Password',
 }
