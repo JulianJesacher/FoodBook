@@ -12,6 +12,7 @@ import {equalValues} from "../../Validators/equalValue";
 })
 export class AuthenticatorComponent implements OnInit {
   state: AuthentificatorCompState = AuthentificatorCompState.LOGIN;
+  AuthentificatorCompState = AuthentificatorCompState;
 
   loginForm?: FormGroup;
   signUpForm?: FormGroup;
@@ -70,13 +71,13 @@ export class AuthenticatorComponent implements OnInit {
   }
 
   onCreateAccountClick() {
-    console.log(this.signUpForm.get('password').errors);
-    const currentForm: FormGroup = this.getCurrentForm();
-    if (!currentForm.valid) {
+    if (this.signUpForm.invalid) {
       console.log('Error');
+      return;
     }
 
-    this.authService.signUp(currentForm.value).subscribe({
+    console.log(this.signUpForm.value)
+    this.authService.signUp(this.signUpForm.value).subscribe({
       next: () => {
         this.router.navigateByUrl('/home');
       },
@@ -87,12 +88,11 @@ export class AuthenticatorComponent implements OnInit {
   }
 
   onLoginClick() {
-    const currentForm: FormGroup = this.getCurrentForm();
-    if (!currentForm.valid) {
+    if (!this.loginForm.valid) {
       console.log('Error');
     }
 
-    this.authService.login(currentForm.value).subscribe({
+    this.authService.login(this.loginForm.value).subscribe({
       next: () => {
         this.router.navigateByUrl('/home');
       },
@@ -103,19 +103,7 @@ export class AuthenticatorComponent implements OnInit {
   }
 
   onForgotPasswordClick() {
-    const currentForm: FormGroup = this.getCurrentForm();
-    this.authService.requestResetPassword(currentForm.value.email).subscribe();
-  }
-
-  private getCurrentForm(): FormGroup {
-    switch (this.state) {
-      case AuthentificatorCompState.LOGIN:
-        return this.loginForm;
-      case AuthentificatorCompState.FORGOT_PASSWORD:
-        return this.forgotPasswordForm;
-      default:
-        return this.signUpForm;
-    }
+    this.authService.requestResetPassword(this.forgotPasswordForm.value.email).subscribe();
   }
 }
 
