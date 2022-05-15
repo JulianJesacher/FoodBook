@@ -77,7 +77,7 @@
                         #imageUpload
                         multiple
                         (change)="handleImageUpload()"
-                        accept="image/png, image/jpeg"
+                        accept="image/jpeg"
                     />
                 </div>
                 <button *ngIf="imageFormArray.length > 0" mat-flat-button color="warn" (click)="removeAllImages()">

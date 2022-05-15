@@ -25,7 +25,6 @@ DishRouter.post(
     '/:dishId/images',
     DishMiddleware.changedByCreator,
     DishMiddleware.createImageDirectory,
-    DishPictureStorage.upload.array('files'),
     DishPictureStorage.sendUploadedImages
 );
 DishRouter.delete('/:dishId/images/:image', DishMiddleware.changedByCreator, DishPictureStorage.removeImage);

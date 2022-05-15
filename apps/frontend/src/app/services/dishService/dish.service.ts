@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/member-ordering */
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap, BehaviorSubject } from 'rxjs';
+import {Observable, tap, BehaviorSubject, switchMap, forkJoin, from} from 'rxjs';
 import { IDish, IDishUpload, IIngredient, IIngredientUpload, ISaveOperation, IStep, IStepUpload } from '@food-book/api-interface';
 import { IRatingData } from '../../tools/rating-input/rating-input.component';
 
@@ -26,13 +26,16 @@ export class DishService {
     }
 
     postImages(images: File[], dishId: string): Observable<string[]> {
-        const formData: FormData = new FormData();
+        return forkJoin(Array.from(images).map((singleImage) => this.postSingleImage(singleImage, dishId)));
+    }
 
-        Array.from(images).forEach((image) => {
-            formData.append('files', image.name);
-        });
-
-        return this.http.post<string[]>(`/api/dish/${dishId}/images`, formData);
+    postSingleImage(image: File, dishId: string): Observable<string> {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      return from<ArrayBuffer>(image.arrayBuffer())
+        .pipe(switchMap(fileBuffer => this.http.post(`/api/dish/${dishId}/images`, fileBuffer, {responseType: 'text', headers: {
+          'Content-Type': 'application/octet-stream',
+          }})));
     }
 
     getDish(dishId: string): Observable<IDish> {
