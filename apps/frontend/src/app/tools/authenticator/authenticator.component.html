@@ -4,7 +4,7 @@
       <mat-card-title>{{ getStateText() }}</mat-card-title>
     </mat-card-header>
 
-    <div *ngIf="isLoginState()">
+    <div *ngIf="state === AuthentificatorCompState.LOGIN">
       <form [formGroup]="loginForm!">
 
         <mat-form-field appearance="outline">
@@ -28,67 +28,7 @@
         <button mat-flat-button color="warn" (click)="onLoginClick()">Login</button>
       </form>
     </div>
-
-    <div *ngIf="isSignUpState()">
-      <form [formGroup]="signUpForm!">
-
-        <mat-form-field appearance="outline">
-          <mat-label>Email</mat-label>
-          <input matInput formControlName="email"/>
-          <mat-error *ngIf="signUpForm.get('email').hasError('required')">
-            Email is
-            <strong>required</strong>
-          </mat-error>
-          <mat-error *ngIf="signUpForm.get('email').hasError('emailExists')">
-            Email already registered
-          </mat-error>
-          <mat-error *ngIf="signUpForm.get('email').hasError('email')">
-            Not a valid email
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Username</mat-label>
-          <input matInput formControlName="username"/>
-          <mat-error *ngIf="signUpForm.get('username').hasError('required')">
-            Username is
-            <strong>required</strong>
-          </mat-error>
-          <mat-error *ngIf="signUpForm.get('username').hasError('usernameExists')">
-            Username already registered
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Password</mat-label>
-          <input matInput type="password" formControlName="password"/>
-          <mat-error *ngIf="signUpForm.get('password').hasError('required')">
-            Password is
-            <strong>required</strong>
-          </mat-error>
-          <mat-error *ngIf="signUpForm.get('password').hasError('minLength')">
-            Password too short
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Repeat Password</mat-label>
-          <input matInput type="password" formControlName="passwordRepeat"/>
-          <mat-error *ngIf="signUpForm.get('passwordRepeat').hasError('required')">
-            Password is
-            <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
-
-        <mat-error *ngIf="signUpForm.hasError('equalValues')">
-          The passwords don´t match.
-        </mat-error>
-
-        <button mat-flat-button color="warn" (click)="onCreateAccountClick()">Create Account</button>
-      </form>
-    </div>
-
-    <div *ngIf="isForgotPasswordState()">
+    <div *ngIf="state === AuthentificatorCompState.FORGOT_PASSWORD">
       <form [formGroup]="forgotPasswordForm!">
 
         <mat-form-field appearance="outline">
@@ -106,6 +46,66 @@
         <button mat-flat-button color="warn" (click)="onForgotPasswordClick()">Reset Password</button>
       </form>
     </div>
+
+    <div *ngIf="state === AuthentificatorCompState.SIGN_UP">
+      <form [formGroup]="signUpForm!" (ngSubmit)="onCreateAccountClick()">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email"/>
+        <mat-error *ngIf="signUpForm.get('email').hasError('required')">
+          Email is
+          <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="signUpForm.get('email').hasError('emailExists')">
+          Email already registered
+        </mat-error>
+        <mat-error *ngIf="signUpForm.get('email').hasError('email')">
+          Not a valid email
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username"/>
+        <mat-error *ngIf="signUpForm.get('username').hasError('required')">
+          Username is
+          <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="signUpForm.get('username').hasError('usernameExists')">
+          Username already registered
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password"/>
+        <mat-error *ngIf="signUpForm.get('password').hasError('required')">
+          Password is
+          <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="signUpForm.get('password').hasError('minLength')">
+          Password too short
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Repeat Password</mat-label>
+        <input matInput type="password" formControlName="passwordRepeat"/>
+        <mat-error *ngIf="signUpForm.get('passwordRepeat').hasError('required')">
+          Password is
+          <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-error *ngIf="signUpForm.hasError('equalValues')">
+        The passwords don´t match.
+      </mat-error>
+
+      <button mat-flat-button color="warn">Create Account</button>
+      </form>
+    </div>
+
 
     <mat-card-actions align="end">
       <div class="changeStateButtons">
