@@ -27,7 +27,6 @@ export class DishMiddleware {
         const dishId = req.params.dishId;
         const directory = `${process.env.DISH_IMAGES_DEST}/${dishId}`;
         fs.emptyDirSync(directory);
-        console.log("createImageDirecotry");
         next();
     }
 
