@@ -98,7 +98,6 @@ export class jwthelper {
         const accessToken = jwthelper.getAccessToken(userPayload);
         const refreshToken = await jwthelper.getRefreshToken(userPayload);
 
-        //TODO: private key?
         return ({
             accessToken,
             refreshToken,

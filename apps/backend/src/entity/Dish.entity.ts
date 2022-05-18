@@ -77,9 +77,6 @@ export class Dish extends BaseEntity implements Omit<IDish, 'postedBy' | 'images
     }
 }
 
-//TODO:
-//SELECT user_saved_dish.dishId, COUNT(user_saved_dish.dishId) AS count FROM user_saved_dish GROUP BY dishId ORDER BY count
-
 export const createExampleDish = (): Dish => {
     return new Dish(
         null,

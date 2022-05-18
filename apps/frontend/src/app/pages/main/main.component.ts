@@ -8,8 +8,6 @@ import { FilterQueryParameter, ISearchModes, IUserData } from '@food-book/api-in
 })
 export class MainComponent {
     user: IUserData | null = null;
-
-    //TODO: Type genauer?
     searchMode = ISearchModes.LATEST;
 
     changeSearchMode(mode: string): void {

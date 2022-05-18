@@ -19,7 +19,6 @@ export class PostContainerComponent implements OnInit {
         this.addNextPosts();
     }
 
-    //TODO: Type genauer?
     _searchMode = ISearchModes.LATEST;
     @Input() set searchMode(newValue: string) {
         console.log('searchModeChanged');
