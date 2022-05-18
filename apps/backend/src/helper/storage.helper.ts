@@ -29,14 +29,6 @@ export class ProfilePictureStorage {
         });
         next();
     }
-
-    public static getFileEnding(userId: string): string {
-        return fs
-            .readdirSync(ProfilePictureStorage._directory)
-            .find((file) => file.startsWith(userId))
-            ?.split('.')
-            .pop();
-    }
 }
 
 export class DishPictureStorage {
