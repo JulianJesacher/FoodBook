@@ -199,7 +199,7 @@ export class UploadComponent implements OnInit {
         this.dishService.updateDish(this.recipeForm?.value, this.recipeForm.value.id).subscribe(() => {
             forkJoin([...this.updateSteps(), ...this.updateIngredients()]).subscribe({
                 complete: () => {
-                    this.router.navigateByUrl('/main');
+                    this.router.navigateByUrl('/home');
                 },
             });
         });

@@ -1,12 +1,12 @@
-import { Response, Request, query } from 'express';
+import { Response, Request } from 'express';
 import { Dish } from '../entity/Dish.entity';
 import { PostHelper } from '../helper/posts.helper';
 import { QueryParameters } from '@food-book/api-interface';
-import { SelectQueryBuilder, getManager, createConnection } from 'typeorm';
+import { SelectQueryBuilder, getManager } from 'typeorm';
 import { User } from '../entity/User.entity';
-import { ProfileHelper } from '../helper/profile.helper';
 
 export class PostController {
+
     public static async handleGetPostsRequest(req: Request, res: Response): Promise<void> {
         const parameters: QueryParameters = req.query;
         const queryBuilder = PostController.getQueryBuilder(parameters);
@@ -22,12 +22,12 @@ export class PostController {
         });
 
         const posts = await PostHelper.convertDishesToPostsResponse(dishes, user);
+        console.log(posts);
         res.status(200).send(posts);
     }
 
     private static getQueryBuilder(parameters: QueryParameters): SelectQueryBuilder<Dish> {
         const queryBuilder = Dish.createQueryBuilder('dish');
-
         queryBuilder.offset(parameters.offset ?? 0).limit(parameters.limit ?? 10);
 
         for (const singleOrder of parameters.order ?? []) {
@@ -55,7 +55,7 @@ export class PostController {
         return queryBuilder;
     }
 
-    public static async getSavedPosts(req: Request, res: Response): Promise<any> {
+    public static async getSavedPosts(req: Request, res: Response): Promise<void> {
         const random: string = req.query.random as string;
         delete req.query['random'];
         const parameters: QueryParameters = req.query;
@@ -83,7 +83,7 @@ export class PostController {
                 username: singleRow.username,
             },
         }));
-
+        console.log("Uff", await PostHelper.convertDishesToPostsResponse(response, user));
         res.status(200).send(await PostHelper.convertDishesToPostsResponse(response, user));
     }
 }
