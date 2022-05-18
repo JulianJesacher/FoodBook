@@ -42,7 +42,8 @@ export class DishPictureStorage {
     },
     filename: function (req, file, callBack) {
       const fileEnding: string = file.originalname.split('.').pop();
-      callBack(null, `${randomUUID()}.${fileEnding}`);
+      const fileName = `${randomUUID()}.${fileEnding}`;
+      callBack(null, fileName);
     },
   });
   public static upload = multer({storage: DishPictureStorage.storage});
@@ -80,7 +81,7 @@ export class DishPictureStorage {
   public static sendUploadedImages(req: Request, res: Response): void {
     const dishId: string = req.params.dishId;
     const newFiles: string[] = (req.files as Express.Multer.File[]).map(
-      (file) => `http://localhost:3000/dish/images/${dishId}/${file.originalname}`
+      (file) => `http://localhost:3000/dish/images/${dishId}/${file.filename}`
     );
     res.status(200).send(newFiles);
   }

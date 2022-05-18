@@ -8,8 +8,6 @@ import express = require('express');
 import {IngredientController} from '../controller/ingredient.controller';
 import {IngredientMiddleware} from '../middleware/ingredient.middleware';
 import {UserMiddleware} from '../middleware/user.middleware';
-import multer = require('multer');
-import {randomUUID} from 'crypto';
 
 export const DishRouter = express.Router({strict: true});
 
