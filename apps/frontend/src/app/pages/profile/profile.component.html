@@ -34,5 +34,5 @@
 </mat-menu>
 
 <div class="posts-wrapper">
-    <app-post-container [filterParameter]="[{ field: 'postedById', op: '=', value: requestedUserId }]"></app-post-container>
+    <app-post-container [filterParameter]="[{ field: 'postedById', op: '=', value: requestedUserId }]" [searchMode]="'profile'"></app-post-container>
 </div>

@@ -70,6 +70,10 @@ export class PostContainerComponent implements OnInit {
                     .subscribe();
                 break;
             }
+            case ISearchModes.PROFILE: {
+                this.postService.getNextPosts(this.queryParameters).subscribe();
+                break;
+            }
             case ISearchModes.SAVED:
             case ISearchModes.SHUFFLE: {
                 const random: boolean = this._searchMode === ISearchModes.SHUFFLE;

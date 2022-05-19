@@ -22,4 +22,5 @@ export const ISearchModes = {
     SAVED: 'saved',
     SHUFFLE: 'shuffle',
     SEARCH_QUERY: 'query',
+    PROFILE: 'profile',
 };
