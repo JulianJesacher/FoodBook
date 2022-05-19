@@ -1,6 +1,7 @@
 import { IUserData, IUpdateUserData, IUserUpdateResponse, PartialBy } from '@food-book/api-interface';
 import { Request, Response } from 'express';
 import { User } from '../entity/User.entity';
+import { ProfilePictureStorage } from './storage.helper';
 
 export class UserHelper {
     public static readonly userSearchKeys = {
@@ -14,7 +15,7 @@ export class UserHelper {
             userId: user.id,
             username: user.username,
             email: user.email,
-            profilePicture: user.profilePicture,
+            profilePicture: ProfilePictureStorage.getProfilePicturePath(user.id),
         };
     }
 

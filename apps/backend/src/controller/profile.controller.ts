@@ -5,20 +5,13 @@ import { UserHelper } from '../helper/user.helper';
 
 export class ProfileController {
 
-    public static async uploadImage(req: Request, res: Response): Promise<unknown> {
-        const fileName: string = req.body.fileName;
-        if (!fileName) {
-            return res.status(500).send({ message: "An error occured while saving the image" })
-        }
-
+    public static async sendProfile(req: Request, res: Response): Promise<unknown> {
         const userId: string = req.params.profileId;
         const user: User = await User.findOne({ id: userId });
         if (!userId || !user) {
             return res.status(400).send({ message: "No user with this id found" })
         }
 
-        user.profilePicture = `http://localhost:3000/profile/images/${fileName}`;
-        await User.save(user);
         res.status(200).send(UserHelper.getUserPayload(user));
     }
 

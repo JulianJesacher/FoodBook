@@ -22,9 +22,6 @@ export class User extends BaseEntity {
     @CreateDateColumn()
     joined: Date;
 
-    @Column()
-    profilePicture: string;
-
     @OneToMany(() => Dish, (dish) => dish.postedBy)
     dishes: Dish[];
 
@@ -64,6 +61,5 @@ export class User extends BaseEntity {
         this.username = userData.username;
         this.password = getHash(`${userData.username}${userData.password}`);
         this.email = userData.email;
-        this.profilePicture = 'https://i.stack.imgur.com/l60Hf.png';
     }
 }
