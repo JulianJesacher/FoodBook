@@ -9,9 +9,8 @@ export class PostController {
 
     public static async handleGetPostsRequest(req: Request, res: Response): Promise<void> {
         const parameters: QueryParameters = req.query;
-        console.log(parameters)
         const queryBuilder = PostController.getQueryBuilder(parameters);
-        console.log(queryBuilder.getSql());
+
         queryBuilder.andWhere('(dish.isPublic = :public OR postedById = :postedBy)', { public: true, postedBy: res.locals.user.userId });
         const dishes: Dish[] = (await queryBuilder.getMany().catch((error) => {
             return res.status(500).send({ error });
@@ -23,7 +22,6 @@ export class PostController {
         });
 
         const posts = await PostHelper.convertDishesToPostsResponse(dishes, user);
-        console.log("posts", posts);
         res.status(200).send(posts);
     }
 

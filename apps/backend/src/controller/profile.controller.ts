@@ -11,7 +11,7 @@ export class ProfileController {
             return res.status(500).send({ message: "An error occured while saving the image" })
         }
 
-        const userId: string = req.body.userId;
+        const userId: string = req.params.profileId;
         const user: User = await User.findOne({ id: userId });
         if (!userId || !user) {
             return res.status(400).send({ message: "No user with this id found" })

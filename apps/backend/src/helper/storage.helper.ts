@@ -13,7 +13,7 @@ export class ProfilePictureStorage {
       callBack(null, ProfilePictureStorage._directory);
     },
     filename: (req, file, callBack) => {
-      const fileName = `${req.body.userId}${path.extname(file.originalname)}`;
+      const fileName = `${req.params.profileId}${path.extname(file.originalname)}`;
       req.body.fileName = fileName;
       callBack(null, fileName);
     },
