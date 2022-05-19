@@ -20,15 +20,6 @@ export class ProfilePictureStorage {
   });
 
   public static upload = multer({storage: ProfilePictureStorage.storage});
-
-  public static removeProfilePicture(req: Request, res: Response, next: express.NextFunction): void {
-    fs.readdirSync(ProfilePictureStorage._directory).forEach(async (file) => {
-      if (file.startsWith(res.locals.user.userId)) {
-        await fs.remove(`${ProfilePictureStorage._directory}/${file}`);
-      }
-    });
-    next();
-  }
 }
 
 export class DishPictureStorage {

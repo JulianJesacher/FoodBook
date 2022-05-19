@@ -15,7 +15,6 @@ ProfileRouter.put('/:profileId', UserMiddleware.retrieveFullUser, ProfileHelper.
 
 ProfileRouter.post(
   '/:profileId/image',
-  //ProfilePictureStorage.removeProfilePicture,
   ProfilePictureStorage.upload.single('file'),
   ProfileController.uploadImage
 );
