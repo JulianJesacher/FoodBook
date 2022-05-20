@@ -3,15 +3,18 @@
 }
 
 .image-wrapper {
-    height: auto;
+    height: fit-content;
     display: flex;
     background-color: black;
     justify-content: center;
     align-items: center;
+    max-height: 40vh !important;
+    overflow: hidden;
 }
 
 app-image-slider {
     aspect-ratio: 16/9;
+    max-height: 40vh;
 }
 
 .content-wrapper {
@@ -82,7 +85,7 @@ app-image-slider {
     margin: var(--margin-outer);
 }
 
-.mat-form-field{
+.mat-form-field {
     font-size: 0.9em;
 }
 
@@ -127,7 +130,7 @@ app-image-slider {
     }
 }
 
-.button-wrapper{
+.button-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -146,18 +149,18 @@ app-image-slider {
     }
 }
 
-.icon{
+.icon {
     margin-left: 0.35em;
 }
 
-@media(min-width: 600px){
-    .dish{
+@media (min-width: 600px) {
+    .dish {
         font-size: 1.15rem;
     }
 }
 
-@media(min-width: 800px){
-    .dish{
+@media (min-width: 800px) {
+    .dish {
         font-size: 1.3rem;
     }
 }

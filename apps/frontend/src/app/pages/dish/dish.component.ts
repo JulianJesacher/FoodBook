@@ -7,6 +7,7 @@ import { UserDataService } from '../../services/userDataService/userData.service
 import { RatingInputComponent } from '../../tools/rating-input/rating-input.component';
 import { filter } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { ShareDialogComponent } from '../../tools/share-dialog/share-dialog/share-dialog.component';
 
 @Component({
     selector: 'app-dish',
@@ -18,7 +19,8 @@ export class DishComponent implements OnInit {
         private ratingDialog: MatDialog,
         private dishService: DishService,
         private userData: UserDataService,
-        private activeRoute: ActivatedRoute
+        private activeRoute: ActivatedRoute,
+        private shareDialog: MatDialog
     ) {
         this.activeRoute.paramMap.subscribe((params) => {
             this.dishId = params.get('id');
@@ -62,5 +64,17 @@ export class DishComponent implements OnInit {
 
     openRatingDialog() {
         this.ratingDialog.open(RatingInputComponent, { data: { dishId: this.dish.id, ratingNumber: this.dish.myRating } });
+    }
+
+    saveButtonClicked() {
+        this.dishService.changeSavedStatus(this.dish.id, this.dish.saved).subscribe({
+            next: () => {
+                this.dish.saved = !this.dish.saved;
+            },
+        });
+    }
+
+    openShareDialog() {
+        this.shareDialog.open(ShareDialogComponent, { data: { dishId: 'test123' } });
     }
 }

@@ -41,9 +41,9 @@
         </div>
 
         <div class="button-wrapper">
-            <button mat-button>SHARE<i class="fa-solid fa-share icon"></i></button>
-            <button *ngIf="!dish?.saved" mat-button>SAVE<i class="fa-solid fa-bookmark icon"></i></button>
-            <button *ngIf="dish?.saved" color="clicked" mat-button>REMOVE<i class="fa-solid fa-bookmark icon"></i></button>
+            <button mat-button (click)="openShareDialog()">SHARE<i class="fa-solid fa-share icon"></i></button>
+            <button *ngIf="!dish?.saved" mat-button (click)="saveButtonClicked()">SAVE<i class="fa-solid fa-bookmark icon"></i></button>
+            <button *ngIf="dish?.saved" color="clicked" mat-button (click)="saveButtonClicked()">REMOVE<i class="fa-solid fa-bookmark icon"></i></button>
             <button mat-button (click)="openRatingDialog()">ADD RATING<i class="fa-solid fa-star icon"></i></button>
             <button *ngIf="dish?.postedBy.userId === user.userId" mat-button [routerLink]="['/', 'upload', dish.id]">EDIT<i class="fa-solid fa-pen icon"></i></button>
         </div>
