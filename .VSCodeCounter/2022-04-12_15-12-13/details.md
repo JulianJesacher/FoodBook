@@ -34,7 +34,7 @@ Total : 29 files,  1087 codes, 15 comments, 246 blanks, all 1348 lines
 | [apps/backend/src/helper/user.helper.ts](/apps/backend/src/helper/user.helper.ts) | TypeScript | 37 | 0 | 5 | 42 |
 | [apps/backend/src/main.ts](/apps/backend/src/main.ts) | TypeScript | 32 | 5 | 4 | 41 |
 | [apps/backend/src/middleware/dish.middleware.ts](/apps/backend/src/middleware/dish.middleware.ts) | TypeScript | 69 | 0 | 13 | 82 |
-| [apps/backend/src/middleware/test/jwtmiddleware.ts](/apps/backend/src/middleware/test/jwtmiddleware.ts) | TypeScript | 21 | 0 | 3 | 24 |
+| [apps/backend/src/middleware/test/jwtmiddleware.ts](/apps/backend/src/middleware/jwtmiddleware.ts) | TypeScript | 21 | 0 | 3 | 24 |
 | [apps/backend/src/routes/auth.router.ts](/apps/backend/src/routes/auth.router.ts) | TypeScript | 11 | 0 | 6 | 17 |
 | [apps/backend/src/routes/dish.router.ts](/apps/backend/src/routes/dish.router.ts) | TypeScript | 21 | 0 | 8 | 29 |
 | [apps/backend/src/routes/post.router.ts](/apps/backend/src/routes/post.router.ts) | TypeScript | 7 | 0 | 3 | 10 |

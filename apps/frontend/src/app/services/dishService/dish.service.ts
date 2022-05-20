@@ -12,6 +12,7 @@ import {
   IStepUpload
 } from '@food-book/api-interface';
 import {IRatingData} from '../../tools/rating-input/rating-input.component';
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root',
@@ -23,15 +24,15 @@ export class DishService {
   dish$: BehaviorSubject<IDish | null> = new BehaviorSubject(null);
 
   createDish(): Observable<IDish> {
-    return this.http.post<IDish>('/api/dish', {});
+    return this.http.post<IDish>(`${environment.serverHost}/dish`, {});
   }
 
   updateDish(recipe: IDishUpload, dishId: string): Observable<IDish> {
-    return this.http.put<IDish>(`/api/dish/${dishId}`, recipe);
+    return this.http.put<IDish>(`${environment.serverHost}/dish/${dishId}`, recipe);
   }
 
   deleteDish(dishId: string): Observable<void> {
-    return this.http.delete<void>(`/api/dish/${dishId}`);
+    return this.http.delete<void>(`${environment.serverHost}/dish/${dishId}`);
   }
 
   postImages(images: File[], dishId: string): Observable<string[]> {
@@ -41,11 +42,11 @@ export class DishService {
       formData.append('files', image, image.name);
     });
 
-    return this.http.post<string[]>(`/api/dish/${dishId}/images`, formData);
+    return this.http.post<string[]>(`${environment.serverHost}/dish/${dishId}/images`, formData);
   }
 
   getDish(dishId: string): Observable<IDish> {
-    return this.http.get<IDish>(`/api/dish/${dishId}`).pipe(tap((dish) => this.dish$.next(dish)));
+    return this.http.get<IDish>(`${environment.serverHost}/dish/${dishId}`).pipe(tap((dish) => this.dish$.next(dish)));
   }
 
   changeSavedStatus(dishId: string, currentlySaved: boolean): Observable<unknown> {
@@ -53,23 +54,23 @@ export class DishService {
     if (currentlySaved) {
       op = 'remove';
     }
-    return this.http.post(`/api/dish/${dishId}/save?op=${op}`, null, {responseType: 'text'});
+    return this.http.post(`${environment.serverHost}/dish/${dishId}/save?op=${op}`, null, {responseType: 'text'});
   }
 
   private createCreateDishSubTypeMethod =
     <I, O>(subType: string) =>
       (dishId: string, inputSubType: I): Observable<O> =>
-        this.http.post<O>(`/api/dish/${dishId}/${subType}`, inputSubType);
+        this.http.post<O>(`${environment.serverHost}/dish/${dishId}/${subType}`, inputSubType);
 
   private createUpdateDishSubTypeMethod =
     <T extends { id: string }>(subType: string) =>
       (dishId: string, inputSubType: T): Observable<T> =>
-        this.http.put<T>(`/api/dish/${dishId}/${subType}/${inputSubType.id}`, inputSubType);
+        this.http.put<T>(`${environment.serverHost}/dish/${dishId}/${subType}/${inputSubType.id}`, inputSubType);
 
   private createDeleteDishSubTypeMethod =
     <T extends { id: string }>(subType: string) =>
       (dishId: string, inputSubType: T): Observable<void> =>
-        this.http.delete<void>(`/api/dish/${dishId}/${subType}/${inputSubType.id}`);
+        this.http.delete<void>(`${environment.serverHost}/dish/${dishId}/${subType}/${inputSubType.id}`);
 
   createStep = this.createCreateDishSubTypeMethod<IStepUpload, IStep>('step');
 
@@ -85,14 +86,14 @@ export class DishService {
 
   deleteImage(dishId: string, imagePath: string): Observable<void> {
     const imageName: string = imagePath.split('/').pop();
-    return this.http.delete<void>(`/api/dish/${dishId}/images/${imageName}`);
+    return this.http.delete<void>(`${environment.serverHost}/dish/${dishId}/images/${imageName}`);
   }
 
   rateDish(dishId: string, rating: number): Observable<IRatingData> {
-    return this.http.post<IRatingData>(`/api/dish/${dishId}/rate?rating=${rating}`, null);
+    return this.http.post<IRatingData>(`${environment.serverHost}/dish/${dishId}/rate?rating=${rating}`, null);
   }
 
   setVisibility(dishId: string, newState: 'public' | 'private'): Observable<IDish> {
-    return this.http.post<IDish>(`/api/dish/${dishId}/visibility?state=${newState}`, null);
+    return this.http.post<IDish>(`${environment.serverHost}/dish/${dishId}/visibility?state=${newState}`, null);
   }
 }

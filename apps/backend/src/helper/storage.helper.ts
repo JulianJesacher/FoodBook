@@ -58,7 +58,7 @@ export class DishPictureStorage {
         const directory = `${DishPictureStorage._directory}/${dishId}`;
         if (fs.existsSync(directory)) {
             fs.readdirSync(directory).forEach((file) => {
-                out.push(`http://localhost:3000/dish/images/${dishId}/${file}`);
+                out.push(`${process.env.SERVER_HOST}/dish/images/${dishId}/${file}`);
             });
         }
         return out;
@@ -85,7 +85,7 @@ export class DishPictureStorage {
     public static sendUploadedImages(req: Request, res: Response): void {
         const dishId: string = req.params.dishId;
         const newFiles: string[] = (req.files as Express.Multer.File[]).map(
-            (file) => `http://localhost:3000/dish/images/${dishId}/${file.filename}`
+            (file) => `${process.env.SERVER_HOST}/dish/images/${dishId}/${file.filename}`
         );
         res.status(200).send(newFiles);
     }

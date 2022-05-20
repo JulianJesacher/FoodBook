@@ -1,4 +1,4 @@
-import {jwtmiddleware} from '../middleware/test/jwtmiddleware';
+import {jwtmiddleware} from '../middleware/jwtmiddleware';
 import {DishController} from '../controller/dish.controller';
 import {DishPictureStorage} from '../helper/storage.helper';
 import {DishMiddleware} from '../middleware/dish.middleware';

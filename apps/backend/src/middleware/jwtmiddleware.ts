@@ -1,6 +1,6 @@
 import { IUserData } from '@food-book/api-interface';
 import { Request, Response } from 'express';
-import { jwthelper } from '../../helper/jwt.helper';
+import { jwthelper } from '../helper/jwt.helper';
 
 export class jwtmiddleware {
     public static loggerMiddleware(req: Request, res: Response, next: () => void) {

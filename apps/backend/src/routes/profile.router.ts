@@ -1,4 +1,4 @@
-import {jwtmiddleware} from '../middleware/test/jwtmiddleware';
+import {jwtmiddleware} from '../middleware/jwtmiddleware';
 import express = require('express');
 import {ProfileController} from '../controller/profile.controller';
 import {ProfilePictureStorage} from '../helper/storage.helper';

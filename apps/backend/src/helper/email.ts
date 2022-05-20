@@ -12,13 +12,13 @@ export const sendEmail = (email: string, userId: string, resetCode: string, user
   const message = {
     from: process.env.GOOGLE_USERNAME,
     to: email,
-    subject: 'FoodBook-Reset password',
+    subject: 'FoodBook - Reset password',
     html: `
         <h1>Hello ${username},</h1>
         <p>to reset your password click on the button below. This link is only valid for ${process.env.RESET_PASSWORD_CODE_TIME} hours.
 
         <div style="background-color: rgb(0, 149, 255); display: flex; align-items: center; justify-content: center;">
-            <a href="http://localhost:4200/resetPassword?${
+            <a href="${process.env.FRONTEND_HOST}/resetPassword?${
       'userId=' + userId + '&code=' + resetCode
     }" style="text-decoration: none; color: white; margin: 3em 1em;">Reset password</a>
         </div>

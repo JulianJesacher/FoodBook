@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { UserController } from '../controller/user.controller';
-import { jwtmiddleware } from '../middleware/test/jwtmiddleware';
+import { jwtmiddleware } from '../middleware/jwtmiddleware';
 
 import express = require('express');
 

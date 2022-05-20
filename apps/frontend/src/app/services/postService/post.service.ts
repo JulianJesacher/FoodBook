@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, Subject, tap, map, BehaviorSubject } from 'rxjs';
 import { IPost, QueryParameters } from '@food-book/api-interface';
 import * as qs from 'qs';
+import {environment} from "../../../environments/environment";
 
 @Injectable({
     providedIn: 'root',
@@ -16,7 +17,7 @@ export class PostService {
     getNextPosts(parameters: QueryParameters): Observable<IPost[]> {
         const queryParametersAsString = qs.stringify(parameters);
 
-        return this.http.get<IPost[]>(`/api/post?${queryParametersAsString}`).pipe(
+        return this.http.get<IPost[]>(`${environment.serverHost}/post?${queryParametersAsString}`).pipe(
             tap((posts) => {
                 this.newPosts$.next(posts);
             })
@@ -28,7 +29,7 @@ export class PostService {
         const queryParametersAsString = qs.stringify(parameters);
         return this.http
             .get<IPost[]>(
-                `/api/post/saved?${queryParametersAsString}&random=${random ?? false}`
+                `${environment.serverHost}/post/saved?${queryParametersAsString}&random=${random ?? false}`
             )
             .pipe(
                 tap((posts) => {
@@ -43,8 +44,8 @@ export class PostService {
             filter: [{ field: 'title', op: 'LIKE', value: searchString + '%' }],
         };
         const queryParametersAsString = qs.stringify(queryParameters);
-        
-        return this.http.get(`/api/post?${queryParametersAsString}`).pipe(
+
+        return this.http.get(`${environment.serverHost}/post?${queryParametersAsString}`).pipe(
             map((posts: IPost[]) => {
                 const output: string[] = [];
                 posts.forEach((post) => output.push(post.title));

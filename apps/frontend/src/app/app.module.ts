@@ -38,7 +38,7 @@ import { AuthService, AuthenticatorServiceInterface } from './services/authServi
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ProtectedImageDirective } from './directives/protectedImage/protected-image.directive';
 import { PostContainerComponent } from './tools/postContainer/post-container/post-container.component';
-import { ImageSliderComponent } from './tools/imageSlider/image-slider/image-slider.component';
+import { ImageSliderComponent } from './tools/image-slider/image-slider.component';
 import { ShareDialogComponent } from './tools/share-dialog/share-dialog/share-dialog.component';
 import { ResetPasswordComponent } from './pages/resetPassword/reset-password/reset-password.component';
 
