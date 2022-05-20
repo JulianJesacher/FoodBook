@@ -35,10 +35,11 @@ export class UploadComponent implements OnInit {
     user: IUserData | null = this.userData.user;
 
     requestedDishId?: string;
-    editMode: boolean = this.requestedDishId != undefined;
+    editMode: boolean;
 
     ngOnInit(): void {
         this.recipeForm = this.getRecipeForm();
+        this.editMode = this.requestedDishId != undefined;
         if (!this.editMode) {
             this.addIngredient();
             this.addStep();
@@ -46,6 +47,7 @@ export class UploadComponent implements OnInit {
         } else {
             this.dishService.getDish(this.requestedDishId).subscribe({
                 next: (requestedDish) => {
+                    console.log(requestedDish);
                     this.recipeForm = this.getRecipeForm(
                         requestedDish.id,
                         requestedDish.title,
