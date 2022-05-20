@@ -3,7 +3,6 @@ import { UserController } from '../controller/user.controller';
 import { jwtmiddleware } from '../middleware/test/jwtmiddleware';
 
 import express = require('express');
-import {UserMiddleware} from "../middleware/user.middleware";
 
 export const AuthRouter = express.Router({ strict: true });
 

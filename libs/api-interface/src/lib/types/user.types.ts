@@ -39,6 +39,5 @@ export type ILoginData = Omit<ISignupData, 'username'>;
 export type IUserUpdateResponse = IUserData;
 
 export interface IUserAuthResponse extends ITokens {
-    personalPrivateKey: string;
     user: IUserData;
 }

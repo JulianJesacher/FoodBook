@@ -21,11 +21,9 @@ export class UserHelper {
 
     public static async checkAvailability(req: Request, res: Response, userData: PartialBy<IUpdateUserData, 'userId'>): Promise<boolean> {
         if (await this.userExistsByKey(UserHelper.userSearchKeys.EMAIL, userData.email, userData.userId)) {
-            res.status(409).send({ message: 'This email is already registered' });
             return false;
         }
         if (await this.userExistsByKey(UserHelper.userSearchKeys.USERNAME, userData.username, userData.userId)) {
-            res.status(409).send({ message: 'This username is already taken' });
             return false;
         }
         return true;

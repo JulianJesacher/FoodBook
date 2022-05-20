@@ -101,7 +101,6 @@ export class jwthelper {
         return ({
             accessToken,
             refreshToken,
-            personalPrivateKey: "",
             user: userPayload
         });
     }
