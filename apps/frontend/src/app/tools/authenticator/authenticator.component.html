@@ -10,7 +10,7 @@
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
           <input matInput formControlName="email"/>
-          <mat-error *ngIf="loginForm.get('email').hasError('required')">
+          <mat-error *ngIf="loginForm.get('password').hasError('required')">
             Email is
             <strong>required</strong>
           </mat-error>
@@ -24,6 +24,10 @@
             <strong>required</strong>
           </mat-error>
         </mat-form-field>
+        
+        <mat-error *ngIf="loginForm.hasError('invalidCredentials')">
+          Invalid credentials
+        </mat-error>
 
         <button mat-flat-button color="warn" (click)="onLoginClick()">Login</button>
       </form>
@@ -40,6 +44,9 @@
           </mat-error>
           <mat-error *ngIf="forgotPasswordForm.get('email').hasError('email')">
             Not a valid email
+          </mat-error>
+          <mat-error *ngIf="forgotPasswordForm.get('email').hasError('notRegistered')">
+            This email is not registered
           </mat-error>
         </mat-form-field>
 
@@ -99,7 +106,7 @@
       </mat-form-field>
 
       <mat-error *ngIf="signUpForm.hasError('equalValues')">
-        The passwords don´t match.
+        The passwords don't match.
       </mat-error>
 
       <button mat-flat-button color="warn">Create Account</button>

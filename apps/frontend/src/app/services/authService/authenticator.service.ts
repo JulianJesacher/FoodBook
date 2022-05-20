@@ -86,7 +86,7 @@ export class AuthService
   }
 
   requestResetPassword(email: string): Observable<void> {
-    return this.http.put<void>(`/api/auth/${email}/requestPasswordReset`, null);
+    return this.http.put(`/api/auth/${email}/requestPasswordReset`, null, {responseType: 'text'}).pipe(switchMap(() => EMPTY));
   }
 
   resetPassword(userId: string, resetCode: string, newPassword: string): Observable<void> {
