@@ -5,6 +5,7 @@ import { getHash } from '../helper/crypto.helper';
 import { UserHelper } from '../helper/user.helper';
 import { ILoginData, ISignupData, ITokens, IUserAuthResponse } from '@food-book/api-interface';
 import { PasswordResetCode } from '../entity/PasswordResetCode.entity';
+import { sendEmail } from '../helper/email';
 
 export class UserController {
     public static async signup(req: Request, res: Response): Promise<void> {
@@ -63,7 +64,8 @@ export class UserController {
             return res.status(400).send({ message: 'No user with this email was found' });
         }
 
-        await new PasswordResetCode(user).save();
+        const resetCode = await new PasswordResetCode(user).save();
+        sendEmail(user.email, user.id, resetCode.id, user.username);
         res.sendStatus(200);
     }
 
@@ -71,16 +73,17 @@ export class UserController {
         const userId: string = req.params.userId;
         const resetCode: string = req.body.resetCode;
 
-        const exists: boolean =
-            (await PasswordResetCode.createQueryBuilder()
-                .where(
-                    `userId = :userId AND id = :resetCode AND TIMESTAMPADD(HOUR, ${process.env.RESET_PASSWORD_CODE_TIME},createdAt) > NOW()`,
-                    {
-                        userId,
-                        resetCode,
-                    }
-                )
-                .getOne()) !== undefined;
+        const resetCodeEntity: PasswordResetCode = await PasswordResetCode.createQueryBuilder()
+            .where(
+                `userId = :userId AND id = :resetCode AND TIMESTAMPADD(HOUR, ${process.env.RESET_PASSWORD_CODE_TIME},createdAt) > NOW()`,
+                {
+                    userId,
+                    resetCode,
+                }
+            )
+            .getOne();
+
+        const exists: boolean = resetCodeEntity !== undefined;
 
         if (!exists) {
             return res.status(404).send({ message: 'No valid resetCode found' });
@@ -92,9 +95,10 @@ export class UserController {
         if (!newPassword) {
             return res.status(400).send({ message: 'No new Password stated' });
         }
-
+ 
         user.changePassword(newPassword);
         await user.save();
+        resetCodeEntity.remove();
 
         return res.sendStatus(200);
     }
