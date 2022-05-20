@@ -29,6 +29,11 @@ export class PostComponent {
         this.dishService.changeSavedStatus(this.post.id, this.post.saved).subscribe({
             next: () => {
                 this.post.saved = !this.post.saved;
+                if (this.post.saved) {
+                    this.post.savedByAmount++;
+                } else {
+                    this.post.savedByAmount--;
+                }
             },
         });
     }

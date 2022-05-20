@@ -1,3 +1,11 @@
+mat-card-header {
+    img,
+    mat-card-title,
+    mat-card-subtitle {
+        cursor: pointer;
+    }
+}
+
 mat-card {
     width: clamp(300px, 600px, 90vw);
 }
