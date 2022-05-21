@@ -21,7 +21,6 @@ export class PostContainerComponent implements OnInit {
 
     _searchMode = ISearchModes.LATEST;
     @Input() set searchMode(newValue: string) {
-        console.log('searchModeChanged');
         this._searchMode = newValue;
         this.resetPosts();
         this.addNextPosts();
@@ -35,18 +34,14 @@ export class PostContainerComponent implements OnInit {
         field: 'time',
         direction: 'ASC',
     };
-    _orderByAmountSaved: OrderQueryParameter = {
-        field: 'savedByAmount',
-        direction: 'DESC',
-    };
-
-    _orderParameter: OrderQueryParameter = this._orderByLatest;
+    _orderState: OrderState = OrderState.LATEST;
+    orderStates = OrderState;
 
     readonly limit: number = 10;
     queryParameters: QueryParameters = {
         limit: this.limit,
         offset: 0,
-        order: [this._orderParameter],
+        order: [this._orderByLatest],
     };
 
     posts: IPost[] = [];
@@ -99,8 +94,23 @@ export class PostContainerComponent implements OnInit {
         this.addNextPosts();
     }
 
+    orderLatest() {
+        this._orderState = OrderState.LATEST;
+        this.changeOrder(this._orderByLatest);
+    }
+
+    orderTime() {
+        this._orderState = OrderState.TIME;
+        this.changeOrder(this._orderByTime);
+    }
+
     private resetPosts(): void {
         this.posts = [];
         this.queryParameters.offset = 0;
     }
+}
+
+enum OrderState {
+    LATEST,
+    TIME,
 }

@@ -9,13 +9,10 @@
 
 <mat-menu #filter class="dropdown-menu">
     <span>Sort by:</span>
-    <ng-container *ngIf="_orderParameter !== _orderByLatest">
-        <button mat-menu-item (click)="changeOrder(_orderByLatest)">Latest<i class="fa-solid fa-calendar icon"></i></button>
+    <ng-container *ngIf="_orderState != orderStates.LATEST">
+        <button mat-menu-item (click)="orderLatest()">Latest<i class="fa-solid fa-calendar icon"></i></button>
     </ng-container>
-    <ng-container *ngIf="_orderParameter !== _orderByTime">
-        <button mat-menu-item (click)="changeOrder(_orderByTime)">Preparation time<i class="fa-solid fa-clock icon"></i></button>
-    </ng-container>
-    <ng-container *ngIf="_orderParameter !== _orderByAmountSaved">
-        <button mat-menu-item (click)="changeOrder(_orderByAmountSaved)">Saved by<i class="fa-solid fa-bookmark icon"></i></button>
+    <ng-container *ngIf="_orderState != orderStates.TIME">
+        <button mat-menu-item (click)="orderTime()">Preparation time<i class="fa-solid fa-clock icon"></i></button>
     </ng-container>
 </mat-menu>
