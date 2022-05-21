@@ -47,10 +47,13 @@ export class HeaderMainComponent implements OnInit {
                 switchMap((input: string) => this.postService.getSearchSuggestions(input).pipe(retry(3), startWith([])))
             )
             .subscribe((postTitles) => {
-                this.suggestions = postTitles;
-                console.log(postTitles);
+                this.suggestions = postTitles.filter(this.elementUnique);
             });
     }
+
+    private elementUnique = (value, index, self) => {
+        return self.indexOf(value) === index
+      }
 
     changeSearchMode(newValue: string): void {
         switch (newValue) {
