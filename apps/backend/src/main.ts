@@ -33,6 +33,11 @@ async function runServer(): Promise<void> {
                     (packet) => packet.id
                 );
                 deletedDishIds.forEach((id) => DishPictureStorage.removeDirectoryAndAllImages(id));
+
+                const resetCodeEntities: PasswordResetCode[] = await PasswordResetCode.createQueryBuilder()
+                    .where(`TIMESTAMPADD(HOUR, ${process.env.RESET_PASSWORD_CODE_TIME},createdAt) > NOW()`)
+                    .getMany();
+                resetCodeEntities.forEach((entity) => entity.remove());
             });
 
             app.listen(3000);
