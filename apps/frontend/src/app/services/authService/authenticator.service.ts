@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, EMPTY, from, map, Observable, of, switchMap, tap} from 'rxjs';
 import {CStorageKeys, IAuthResponse, IUserData} from '@food-book/api-interface';
-import {environment} from "../../../environments/environment";
+import {AppConfigurationService} from "../configurationService/app-configuration.service";
 
 export abstract class AuthenticatorServiceInterface {
   abstract accessToken$: BehaviorSubject<string | null>;
@@ -32,7 +32,7 @@ export abstract class AuthenticatorServiceInterface {
 })
 export class AuthService
   extends AuthenticatorServiceInterface {
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private configService: AppConfigurationService) {
     super();
   }
 
@@ -50,7 +50,7 @@ export class AuthService
   }
 
   login(form: { email: string; password: string }): Observable<IAuthResponse> {
-    return this.http.post<IAuthResponse>(`${environment.serverHost}/auth/login`, form).pipe(
+    return this.http.post<IAuthResponse>(`${this.configService.config.serverHost}/auth/login`, form).pipe(
       tap((response) => {
         this.handleResponse(response);
       })
@@ -58,7 +58,7 @@ export class AuthService
   }
 
   signUp(form: { email: string; username: string; password: string }): Observable<IAuthResponse> {
-    return this.http.post<IAuthResponse>(`${environment.serverHost}/auth/signup`, form).pipe(
+    return this.http.post<IAuthResponse>(`${this.configService.config.serverHost}/auth/signup`, form).pipe(
       tap((response) => {
         this.handleResponse(response);
       })
@@ -77,7 +77,7 @@ export class AuthService
   refreshToken(): Observable<{ accessToken: string; refreshToken: string }> {
     const refreshToken: string = localStorage.getItem(CStorageKeys.REFRESH_TOKEN);
 
-    return this.http.post<{ accessToken: string; refreshToken: string }>(`${environment.serverHost}/auth/refresh-token`, {refreshToken}).pipe(
+    return this.http.post<{ accessToken: string; refreshToken: string }>(`${this.configService.config.serverHost}/auth/refresh-token`, {refreshToken}).pipe(
       tap((response) => {
         localStorage.setItem(CStorageKeys.ACCESS_TOKEN, response.accessToken);
         localStorage.setItem(CStorageKeys.REFRESH_TOKEN, response.refreshToken);
@@ -87,12 +87,12 @@ export class AuthService
   }
 
   requestResetPassword(email: string): Observable<void> {
-    return this.http.put(`${environment.serverHost}/auth/${email}/requestPasswordReset`, null, {responseType: 'text'}).pipe(switchMap(() => EMPTY));
+    return this.http.put(`${this.configService.config.serverHost}/auth/${email}/requestPasswordReset`, null, {responseType: 'text'}).pipe(switchMap(() => EMPTY));
   }
 
   resetPassword(userId: string, resetCode: string, newPassword: string): Observable<void> {
     const body = {resetCode, newPassword};
-    return this.http.post(`${environment.serverHost}/auth/${userId}/resetPassword`, body, {responseType: 'text'}).pipe(switchMap(() => EMPTY));
+    return this.http.post(`${this.configService.config.serverHost}/auth/${userId}/resetPassword`, body, {responseType: 'text'}).pipe(switchMap(() => EMPTY));
   }
 
   private handleResponse(response: IAuthResponse): void {
@@ -105,11 +105,11 @@ export class AuthService
   }
 
   emailExists(email: string): Observable<boolean> {
-    return this.http.get<boolean>(`${environment.serverHost}/auth/emailExists/${email}`);
+    return this.http.get<boolean>(`${this.configService.config.serverHost}/auth/emailExists/${email}`);
   }
 
   userExists(username: string): Observable<boolean> {
-    return this.http.get<boolean>(`${environment.serverHost}/auth/userExists/${username}`);
+    return this.http.get<boolean>(`${this.configService.config.serverHost}/auth/userExists/${username}`);
   }
 }
 

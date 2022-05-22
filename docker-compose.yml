@@ -8,6 +8,13 @@ services:
     env_file: '.docker.env'
     volumes:
       - 'mariadb:/var/lib/mysql'
+  frontend:
+    container_name: 'foodbook_frontend'
+    image: 'foodbook-test:latest'
+    ports:
+      - '127.0.0.1:8080:80'
+    environment:
+      - "SERVER_HOST=http://localhost:3000"
 
 volumes:
   mariadb:

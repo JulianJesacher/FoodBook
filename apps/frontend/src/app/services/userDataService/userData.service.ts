@@ -3,7 +3,7 @@ import { AuthenticatorServiceInterface } from '../authService/authenticator.serv
 import { BehaviorSubject, Observable, tap, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { CStorageKeys, IUserData } from '@food-book/api-interface';
-import {environment} from "../../../environments/environment";
+import {AppConfigurationService} from "../configurationService/app-configuration.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ import {environment} from "../../../environments/environment";
 export class UserDataService {
 
   constructor(private authService: AuthenticatorServiceInterface,
-    private http: HttpClient) { }
+    private http: HttpClient, private configService: AppConfigurationService) {}
 
   private _user = new BehaviorSubject<IUserData | null>(null);
   get user(): IUserData | null {
@@ -31,7 +31,7 @@ export class UserDataService {
       return of(null);
     }
 
-    return this.http.get<IUserData>(`${environment.serverHost}/auth/current-user`);
+    return this.http.get<IUserData>(`${this.configService.config.serverHost}/auth/current-user`);
   }
 
   private initialize(): Observable<IUserData | null> {
