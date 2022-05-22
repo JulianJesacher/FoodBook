@@ -1,0 +1,41 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Node.js CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm ci
+    - run: build:frontend
+    - name: SFTP Deploy
+      # You may pin to the exact commit or the version.
+      # uses: wlixcc/SFTP-Deploy-Action@c6e4d76ad92d7460e93fc66178b52638298adfaa
+      uses: wlixcc/SFTP-Deploy-Action@v1.2.2
+      with:
+        username: julian
+        server: 185.112.184.89
+        # you can copy private_key from your *.pem file, keep format
+        ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_RPI }}
+        # will put all file under this path
+        local_path: ./dist/apps/frontend/*
+        # files will copy to under remote_path
+        remote_path: /var/www/html
