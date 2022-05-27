@@ -44,4 +44,4 @@ jobs:
         file: ./apps/frontend/container/Dockerfile
         pull: true
         push: true
-        tags: 'ghcr.io/JulianJesacher/FoodBook/foodbook-frontend:latest'
+        tags: 'ghcr.io/julianjesacher/foodbook/foodbook-frontend:latest'
