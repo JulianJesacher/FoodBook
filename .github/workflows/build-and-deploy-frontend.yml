@@ -35,7 +35,7 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run build:frontend
-    - name: Build and push Docker images
+    - name: Build and push Frontend Docker images
       # You may pin to the exact commit or the version.
       # uses: docker/build-push-action@e551b19e49efd4e98792db7592c17c09b89db8d8
       uses: docker/build-push-action@v3.0.0
@@ -45,3 +45,15 @@ jobs:
         pull: true
         push: true
         tags: 'ghcr.io/julianjesacher/foodbook/foodbook-frontend:latest'
+
+    - run: npm run build:backend
+    - name: Build and push Backend Docker images
+      # You may pin to the exact commit or the version.
+      # uses: docker/build-push-action@e551b19e49efd4e98792db7592c17c09b89db8d8
+      uses: docker/build-push-action@v3.0.0
+      with:
+        context: .
+        file: ./apps/backend/container/Dockerfile
+        pull: true
+        push: true
+        tags: 'ghcr.io/julianjesacher/foodbook/foodbook-backend:latest'
