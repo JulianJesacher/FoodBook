@@ -44,5 +44,5 @@ jobs:
         file: ./apps/frontend/container/Dockerfile
         pull: true
         push: true
-        tags: 'ghcr.io/JulianJesacher/foodbook-frontend:latest'
+        tags: 'ghcr.io/julianjesacher/foodbook-frontend:latest'
 #        github-token: # optional, default is ${{ github.token }}
