@@ -8,6 +8,7 @@
     "start": "nx serve",
     "build": "nx build",
     "build:frontend": "nx build frontend --configuration=production",
+    "build:backend": "nx build backend",
     "test": "nx test",
     "seed:config": "ts-node --project apps/backend/tsconfig.app.json ./node_modules/typeorm-seeding/dist/cli.js config",
     "seed:run": "ts-node --project apps/backend/tsconfig.app.json ./node_modules/typeorm-seeding/dist/cli.js seed"
