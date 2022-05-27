@@ -1,4 +1,4 @@
-FROM nginx:1.21.6-alpine
+FROM nginx:5027291eb45e
 
 USER root
 
