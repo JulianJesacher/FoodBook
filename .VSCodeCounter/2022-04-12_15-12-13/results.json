@@ -1,1 +1,171 @@
-{"file:///c%3A/Coding/food-book/apps/backend/src/routes/profile.router.ts":{"language":"TypeScript","code":16,"comment":1,"blank":6},"file:///c%3A/Coding/food-book/apps/backend/src/routes/root.controller.ts":{"language":"TypeScript","code":25,"comment":4,"blank":9},"file:///c%3A/Coding/food-book/apps/backend/src/routes/post.router.ts":{"language":"TypeScript","code":7,"comment":0,"blank":3},"file:///c%3A/Coding/food-book/apps/backend/src/routes/dish.router.ts":{"language":"TypeScript","code":21,"comment":0,"blank":8},"file:///c%3A/Coding/food-book/apps/backend/src/routes/auth.router.ts":{"language":"TypeScript","code":11,"comment":0,"blank":6},"file:///c%3A/Coding/food-book/apps/backend/src/middleware/test/jwtmiddleware.ts":{"language":"TypeScript","code":21,"comment":0,"blank":3},"file:///c%3A/Coding/food-book/apps/backend/src/main.ts":{"language":"TypeScript","code":32,"comment":5,"blank":4},"file:///c%3A/Coding/food-book/apps/backend/src/helper/user.helper.ts":{"language":"TypeScript","code":37,"comment":0,"blank":5},"file:///c%3A/Coding/food-book/apps/backend/src/helper/posts.helper.ts":{"language":"TypeScript","code":27,"comment":0,"blank":3},"file:///c%3A/Coding/food-book/apps/backend/src/helper/storage.helper.ts":{"language":"TypeScript","code":67,"comment":0,"blank":12},"file:///c%3A/Coding/food-book/apps/backend/src/helper/dish.helper.ts":{"language":"TypeScript","code":50,"comment":0,"blank":4},"file:///c%3A/Coding/food-book/apps/backend/src/helper/jwt.helper.ts":{"language":"TypeScript","code":86,"comment":2,"blank":22},"file:///c%3A/Coding/food-book/apps/backend/src/helper/crypto.helper.ts":{"language":"TypeScript","code":6,"comment":0,"blank":1},"file:///c%3A/Coding/food-book/apps/backend/src/environments/environment.ts":{"language":"TypeScript","code":3,"comment":0,"blank":1},"file:///c%3A/Coding/food-book/apps/backend/src/environments/environment.prod.ts":{"language":"TypeScript","code":3,"comment":0,"blank":1},"file:///c%3A/Coding/food-book/apps/backend/src/middleware/dish.middleware.ts":{"language":"TypeScript","code":69,"comment":0,"blank":13},"file:///c%3A/Coding/food-book/apps/backend/src/entity/UserTokens.entity.ts":{"language":"TypeScript","code":17,"comment":0,"blank":6},"file:///c%3A/Coding/food-book/apps/backend/src/entity/User.entity.ts":{"language":"TypeScript","code":53,"comment":0,"blank":14},"file:///c%3A/Coding/food-book/apps/backend/src/entity/Rating.entity.ts":{"language":"TypeScript","code":18,"comment":0,"blank":6},"file:///c%3A/Coding/food-book/apps/backend/src/entity/Step.entity.ts":{"language":"TypeScript","code":21,"comment":0,"blank":7},"file:///c%3A/Coding/food-book/apps/backend/src/entity/Ingredient.entity.ts":{"language":"TypeScript","code":51,"comment":0,"blank":10},"file:///c%3A/Coding/food-book/apps/backend/src/entity/Dish.entity.ts":{"language":"TypeScript","code":97,"comment":0,"blank":20},"file:///c%3A/Coding/food-book/apps/backend/src/controller/user.controller.ts":{"language":"TypeScript","code":59,"comment":0,"blank":15},"file:///c%3A/Coding/food-book/apps/backend/src/controller/profile.controller.ts":{"language":"TypeScript","code":30,"comment":0,"blank":8},"file:///c%3A/Coding/food-book/apps/backend/src/controller/step.controller.ts":{"language":"TypeScript","code":28,"comment":0,"blank":5},"file:///c%3A/Coding/food-book/apps/backend/src/controller/post.controller.ts":{"language":"TypeScript","code":78,"comment":3,"blank":19},"file:///c%3A/Coding/food-book/apps/backend/src/controller/post.controller.spec.ts":{"language":"TypeScript","code":22,"comment":0,"blank":5},"file:///c%3A/Coding/food-book/apps/backend/src/controller/ingredient.controller.ts":{"language":"TypeScript","code":28,"comment":0,"blank":6},"file:///c%3A/Coding/food-book/apps/backend/src/controller/dish.controller.ts":{"language":"TypeScript","code":104,"comment":0,"blank":24}}
+{
+    "file:///c%3A/Coding/food-book/apps/server/src/routes/profile.router.ts": {
+        "language": "TypeScript",
+        "code": 16,
+        "comment": 1,
+        "blank": 6
+    },
+    "file:///c%3A/Coding/food-book/apps/server/src/routes/root.controller.ts": {
+        "language": "TypeScript",
+        "code": 25,
+        "comment": 4,
+        "blank": 9
+    },
+    "file:///c%3A/Coding/food-book/apps/server/src/routes/post.router.ts": {
+        "language": "TypeScript",
+        "code": 7,
+        "comment": 0,
+        "blank": 3
+    },
+    "file:///c%3A/Coding/food-book/apps/server/src/routes/dish.router.ts": {
+        "language": "TypeScript",
+        "code": 21,
+        "comment": 0,
+        "blank": 8
+    },
+    "file:///c%3A/Coding/food-book/apps/server/src/routes/auth.router.ts": {
+        "language": "TypeScript",
+        "code": 11,
+        "comment": 0,
+        "blank": 6
+    },
+    "file:///c%3A/Coding/food-book/apps/server/src/middleware/test/jwtmiddleware.ts": {
+        "language": "TypeScript",
+        "code": 21,
+        "comment": 0,
+        "blank": 3
+    },
+    "file:///c%3A/Coding/food-book/apps/server/src/main.ts": { "language": "TypeScript", "code": 32, "comment": 5, "blank": 4 },
+    "file:///c%3A/Coding/food-book/apps/server/src/helper/user.helper.ts": {
+        "language": "TypeScript",
+        "code": 37,
+        "comment": 0,
+        "blank": 5
+    },
+    "file:///c%3A/Coding/food-book/apps/server/src/helper/posts.helper.ts": {
+        "language": "TypeScript",
+        "code": 27,
+        "comment": 0,
+        "blank": 3
+    },
+    "file:///c%3A/Coding/food-book/apps/server/src/helper/storage.helper.ts": {
+        "language": "TypeScript",
+        "code": 67,
+        "comment": 0,
+        "blank": 12
+    },
+    "file:///c%3A/Coding/food-book/apps/server/src/helper/dish.helper.ts": {
+        "language": "TypeScript",
+        "code": 50,
+        "comment": 0,
+        "blank": 4
+    },
+    "file:///c%3A/Coding/food-book/apps/server/src/helper/jwt.helper.ts": {
+        "language": "TypeScript",
+        "code": 86,
+        "comment": 2,
+        "blank": 22
+    },
+    "file:///c%3A/Coding/food-book/apps/server/src/helper/crypto.helper.ts": {
+        "language": "TypeScript",
+        "code": 6,
+        "comment": 0,
+        "blank": 1
+    },
+    "file:///c%3A/Coding/food-book/apps/server/src/environments/environment.ts": {
+        "language": "TypeScript",
+        "code": 3,
+        "comment": 0,
+        "blank": 1
+    },
+    "file:///c%3A/Coding/food-book/apps/server/src/environments/environment.prod.ts": {
+        "language": "TypeScript",
+        "code": 3,
+        "comment": 0,
+        "blank": 1
+    },
+    "file:///c%3A/Coding/food-book/apps/server/src/middleware/dish.middleware.ts": {
+        "language": "TypeScript",
+        "code": 69,
+        "comment": 0,
+        "blank": 13
+    },
+    "file:///c%3A/Coding/food-book/apps/server/src/entity/UserTokens.entity.ts": {
+        "language": "TypeScript",
+        "code": 17,
+        "comment": 0,
+        "blank": 6
+    },
+    "file:///c%3A/Coding/food-book/apps/server/src/entity/User.entity.ts": {
+        "language": "TypeScript",
+        "code": 53,
+        "comment": 0,
+        "blank": 14
+    },
+    "file:///c%3A/Coding/food-book/apps/server/src/entity/Rating.entity.ts": {
+        "language": "TypeScript",
+        "code": 18,
+        "comment": 0,
+        "blank": 6
+    },
+    "file:///c%3A/Coding/food-book/apps/server/src/entity/Step.entity.ts": {
+        "language": "TypeScript",
+        "code": 21,
+        "comment": 0,
+        "blank": 7
+    },
+    "file:///c%3A/Coding/food-book/apps/server/src/entity/Ingredient.entity.ts": {
+        "language": "TypeScript",
+        "code": 51,
+        "comment": 0,
+        "blank": 10
+    },
+    "file:///c%3A/Coding/food-book/apps/server/src/entity/Dish.entity.ts": {
+        "language": "TypeScript",
+        "code": 97,
+        "comment": 0,
+        "blank": 20
+    },
+    "file:///c%3A/Coding/food-book/apps/server/src/controller/user.controller.ts": {
+        "language": "TypeScript",
+        "code": 59,
+        "comment": 0,
+        "blank": 15
+    },
+    "file:///c%3A/Coding/food-book/apps/server/src/controller/profile.controller.ts": {
+        "language": "TypeScript",
+        "code": 30,
+        "comment": 0,
+        "blank": 8
+    },
+    "file:///c%3A/Coding/food-book/apps/server/src/controller/step.controller.ts": {
+        "language": "TypeScript",
+        "code": 28,
+        "comment": 0,
+        "blank": 5
+    },
+    "file:///c%3A/Coding/food-book/apps/server/src/controller/post.controller.ts": {
+        "language": "TypeScript",
+        "code": 78,
+        "comment": 3,
+        "blank": 19
+    },
+    "file:///c%3A/Coding/food-book/apps/server/src/controller/post.controller.spec.ts": {
+        "language": "TypeScript",
+        "code": 22,
+        "comment": 0,
+        "blank": 5
+    },
+    "file:///c%3A/Coding/food-book/apps/server/src/controller/ingredient.controller.ts": {
+        "language": "TypeScript",
+        "code": 28,
+        "comment": 0,
+        "blank": 6
+    },
+    "file:///c%3A/Coding/food-book/apps/server/src/controller/dish.controller.ts": {
+        "language": "TypeScript",
+        "code": 104,
+        "comment": 0,
+        "blank": 24
+    }
+}

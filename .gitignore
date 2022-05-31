@@ -43,8 +43,8 @@ Thumbs.db
 
 # Application specific
 .env
-/apps/frontend/src/assets/auth-bg.jpg
-!/apps/frontend/src/assets/.gitkeep
+/apps/client/src/assets/auth-bg.jpg
+!/apps/client/src/assets/.gitkeep
 
-/apps/backend/dishPictures
-/apps/backend/profilePictures
+/apps/server/dishPictures
+/apps/server/profilePictures

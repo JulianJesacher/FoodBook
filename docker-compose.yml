@@ -1,28 +1,28 @@
 version: '3.8'
 services:
-  db:
-    container_name: 'foodbook_mariadb'
-    image: 'mariadb:10.7.3'
-    ports:
-      - '127.0.0.1:3306:3306'
-    env_file: '.docker.env'
-    volumes:
-      - 'mariadb:/var/lib/mysql'
-  frontend:
-    container_name: 'foodbook_frontend'
-    image: 'foodbook-test:latest'
-    ports:
-      - '127.0.0.1:8080:80'
-    environment:
-      - "SERVER_HOST=http://localhost:3000"
-  backend:
-    container_name: 'foodbook_backend'
-    image: 'foodbook-backend-test:latest'
-    env_file: './apps/backend/.env'
-    environment:
-      - 'TYPEORM_DB_HOST=db'
-    ports:
-      - '127.0.0.1:3000:8080'
+    db:
+        container_name: 'foodbook_mariadb'
+        image: 'mariadb:10.7.3'
+        ports:
+            - '127.0.0.1:3306:3306'
+        env_file: '.docker.env'
+        volumes:
+            - 'mariadb:/var/lib/mysql'
+    client:
+        container_name: 'foodbook_client'
+        image: 'foodbook-test:latest'
+        ports:
+            - '127.0.0.1:8080:80'
+        environment:
+            - 'SERVER_HOST=http://localhost:3000'
+    server:
+        container_name: 'foodbook_server'
+        image: 'foodbook-server-test:latest'
+        env_file: './apps/server/.env'
+        environment:
+            - 'TYPEORM_DB_HOST=db'
+        ports:
+            - '127.0.0.1:3000:8080'
 
 volumes:
-  mariadb:
+    mariadb:

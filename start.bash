@@ -1,2 +1,2 @@
-nx serve frontend &
-nx serve backend
+nx serve client &
+nx serve server

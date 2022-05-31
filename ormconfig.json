@@ -1,26 +1,20 @@
 {
-   "type": "mariadb",
-   "host": "localhost",
-   "port": 3306,
-   "username": "root",
-   "password": "Passwort123",
-   "database": "foodbook",
-   "synchronize": true,
-   "logging": false,
-   "entities": [
-      "apps/backend/src/entity/**/*.ts"
-   ],
-   "migrations": [
-      "apps/backend/src/migration/**/*.ts"
-   ],
-   "subscribers": [
-      "apps/backend/src/subscriber/**/*.ts"
-   ],
-   "cli": {
-      "entitiesDir": "apps/backend/src/entity",
-      "migrationsDir": "apps/backend/src/migration",
-      "subscribersDir": "apps/backend/src/subscriber"
-   },
-   "seeds": ["apps/backend/src/database/seeds/*{.ts,.js}"],
-   "factories": ["apps/backend/src/database/factories/*{.ts,.js}"]
+    "type": "mariadb",
+    "host": "localhost",
+    "port": 3306,
+    "username": "root",
+    "password": "Passwort123",
+    "database": "foodbook",
+    "synchronize": true,
+    "logging": false,
+    "entities": ["apps/server/src/entity/**/*.ts"],
+    "migrations": ["apps/server/src/migration/**/*.ts"],
+    "subscribers": ["apps/server/src/subscriber/**/*.ts"],
+    "cli": {
+        "entitiesDir": "apps/server/src/entity",
+        "migrationsDir": "apps/server/src/migration",
+        "subscribersDir": "apps/server/src/subscriber"
+    },
+    "seeds": ["apps/server/src/database/seeds/*{.ts,.js}"],
+    "factories": ["apps/server/src/database/factories/*{.ts,.js}"]
 }
