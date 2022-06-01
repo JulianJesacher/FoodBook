@@ -11,4 +11,7 @@ RUN chown -R nginx /etc/nginx /etc/angular
 RUN chown -R nginx /usr/share/nginx/html
 RUN chmod +x /docker-entrypoint.d/40-write-config.sh
 
+VOLUME /usr/share/nginx/html
+VOLUME /usr/share/nginx/html/assets
+
 USER nginx
