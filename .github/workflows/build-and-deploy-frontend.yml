@@ -42,7 +42,6 @@ jobs:
       with:
         context: .
         file: ./apps/frontend/container/Dockerfile
-        platforms: 'linux/arm/v7'
         pull: true
         push: true
         tags: 'ghcr.io/julianjesacher/foodbook/foodbook-frontend:latest'
@@ -55,7 +54,6 @@ jobs:
       with:
         context: .
         file: ./apps/backend/container/Dockerfile
-        platforms: 'linux/arm/v7'
         pull: true
         push: true
         tags: 'ghcr.io/julianjesacher/foodbook/foodbook-backend:latest'
