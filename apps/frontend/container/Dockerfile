@@ -4,8 +4,8 @@ USER root
 
 COPY apps/frontend/container/config.json.template /etc/angular/templates/
 COPY apps/frontend/container/40-write-config.sh /docker-entrypoint.d/
+COPY apps/frontend/container/nginx.conf /etc/nginx/conf.d/default.conf
 COPY dist/apps/frontend /usr/share/nginx/html/
-COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 RUN chown -R nginx /var/run /run /var/cache /var/cache/nginx
 RUN chown -R nginx /etc/nginx /etc/angular
