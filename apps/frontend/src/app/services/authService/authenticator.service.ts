@@ -6,6 +6,7 @@ import {AppConfigurationService} from "../configurationService/app-configuration
 
 export abstract class AuthenticatorServiceInterface {
   abstract accessToken$: BehaviorSubject<string | null>;
+  abstract user$: BehaviorSubject<IUserData | null>;
 
   abstract accessTokenChanges(): Observable<string>;
 
