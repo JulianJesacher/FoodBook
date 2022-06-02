@@ -17,7 +17,6 @@ export interface IAuthResponse {
 export const CStorageKeys = {
     ACCESS_TOKEN: 'token',
     REFRESH_TOKEN: 'refreshToken',
-    PERSONAL_PRIVATE_KEY: 'personalPrivateKey',
 };
 
 export interface IBasicUserData {
