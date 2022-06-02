@@ -2,27 +2,32 @@ version: '3.8'
 services:
   db:
     container_name: 'foodbook_mariadb'
-    image: 'mariadb:10.7.3'
-    ports:
-      - '127.0.0.1:3306:3306'
+    image: mariadb:latest
     env_file: '.docker.env'
     volumes:
-      - 'mariadb:/var/lib/mysql'
+      - mariadb:/var/lib/mysql
+
   frontend:
     container_name: 'foodbook_frontend'
-    image: 'foodbook-test:latest'
+    image: 'ghcr.io/julianjesacher/foodbook/foodbook-frontend:latest'
     ports:
-      - '127.0.0.1:8080:80'
+      - '127.0.0.1:3000:80'
     environment:
-      - "SERVER_HOST=http://localhost:3000"
+      - 'SERVER_HOST=https://api.foodbook.julianjesacher.dev'
+    volumes:
+      - ./assets:/usr/share/nginx/html/assets
+
   backend:
     container_name: 'foodbook_backend'
-    image: 'foodbook-backend-test:latest'
-    env_file: './apps/backend/.env'
+    image: 'ghcr.io/julianjesacher/foodbook/foodbook-backend:latest'
+    env_file: '.docker.env'
     environment:
       - 'TYPEORM_DB_HOST=db'
+      - 'FRONTEND_HOST=*'
     ports:
-      - '127.0.0.1:3000:8080'
+      - '127.0.0.1:3001:3000'
+    depends_on:
+      - 'db'
 
 volumes:
   mariadb:
