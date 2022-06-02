@@ -33,7 +33,6 @@ export class HeaderMainComponent implements OnInit {
 
     ngOnInit(): void {
         this._currentSearchMode.subscribe((value) => {
-            console.log('emit', value);
             this.searchModeChanged.emit(value);
         });
 

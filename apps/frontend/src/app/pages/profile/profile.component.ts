@@ -134,7 +134,6 @@ export class ProfileComponent implements OnInit {
         const errors = [];
 
         for (const [errorName, errorObject] of Object.entries(controlErrors ?? {})) {
-            console.log(errorName, errorObject);
             errors.push(this.convertErrorToMessage(controlName, errorName, errorObject));
         }
         return errors;

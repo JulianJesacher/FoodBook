@@ -47,7 +47,6 @@ export class UploadComponent implements OnInit {
         } else {
             this.dishService.getDish(this.requestedDishId).subscribe({
                 next: (requestedDish) => {
-                    console.log(requestedDish);
                     this.recipeForm = this.getRecipeForm(
                         requestedDish.id,
                         requestedDish.title,
@@ -69,7 +68,6 @@ export class UploadComponent implements OnInit {
                         this.addImage(image);
                     });
                 },
-                error: () => console.log('error'),
             });
         }
     }

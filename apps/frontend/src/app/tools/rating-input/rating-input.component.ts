@@ -41,7 +41,6 @@ export class RatingInputComponent implements OnInit {
             this.dishService.rateDish(this.data.dishId, this.data.ratingNumber).subscribe({
                 next: (newRating) => {
                     const prevValue = this.dishService.dish$.value;
-                    console.log(newRating);
                     if (prevValue) {
                         this.dishService.dish$.next({ ...this.dishService.dish$.value, myRating: newRating.ratingNumber });
                     }

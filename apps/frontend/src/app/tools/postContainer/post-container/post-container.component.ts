@@ -13,7 +13,6 @@ export class PostContainerComponent implements OnInit {
 
     _filterParameter!: FilterQueryParameter;
     @Input() set filterParameter(newValue: FilterQueryParameter[]) {
-        console.log('filterChanged');
         this.queryParameters.filter = newValue;
         this.resetPosts();
         this.addNextPosts();

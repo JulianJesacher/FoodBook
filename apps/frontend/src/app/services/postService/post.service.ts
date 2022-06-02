@@ -29,7 +29,6 @@ export class PostService {
     }
 
     getNextSavedPosts(parameters: QueryParameters, userId: string, random?: boolean): Observable<IPost[]> {
-        console.log("XX");
         const queryParametersAsString = qs.stringify(parameters);
         return this.http
             .get<IPost[]>(

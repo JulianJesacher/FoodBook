@@ -38,7 +38,6 @@ export class ProtectedImageDirective {
     }
 
     private _refreshTokenAndReplaceImageSrc($event: ErrorEvent) {
-        console.log('refreshToken');
         this.authService.refreshToken().subscribe(() => {
             this.computeFinalSrc();
         });

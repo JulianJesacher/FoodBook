@@ -82,7 +82,6 @@ export class PostController {
                 username: singleRow.username,
             },
         }));
-        console.log("Uff", await PostHelper.convertDishesToPostsResponse(response, user));
         res.status(200).send(await PostHelper.convertDishesToPostsResponse(response, user));
     }
 }
