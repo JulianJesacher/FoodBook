@@ -37,8 +37,6 @@ export class AuthService
   }
 
   user$ = new BehaviorSubject<IUserData | null>(null);
-  personalPrivateKey$ = new BehaviorSubject<string | null>(null);
-
   accessToken$ = new BehaviorSubject<string | null>(null);
 
   get accessToken() {
@@ -71,7 +69,6 @@ export class AuthService
     }
     this.user$.next(null);
     this.accessToken$.next(null);
-    this.personalPrivateKey$.next(null);
   }
 
   refreshToken(): Observable<{ accessToken: string; refreshToken: string }> {
@@ -101,7 +98,6 @@ export class AuthService
 
     this.user$.next(response.user);
     this.accessToken$.next(response.accessToken);
-    this.personalPrivateKey$.next(response.personalPrivateKey);
   }
 
   emailExists(email: string): Observable<boolean> {
