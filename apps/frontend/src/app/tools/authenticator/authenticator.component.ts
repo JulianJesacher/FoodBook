@@ -73,6 +73,7 @@ export class AuthenticatorComponent implements OnInit {
 
     onLoginClick() {
         if (!this.loginForm.valid) {
+          return
         }
 
         this.authService.login(this.loginForm.value).subscribe({
