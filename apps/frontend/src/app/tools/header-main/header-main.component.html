@@ -1,39 +1,42 @@
 <div class="nav-bar" #navBar>
-    <div class="content-left">
-        <a href="/" class="nav-bar-text">FoodBook</a>
-    </div>
-    <div class="search-wrapper">
-        <form>
-            <input type="search" placeholder="Search FoodBook" [formControl]="searchInput" [matAutocomplete]="autocomplete">
-            <button type="submit" (click)="searchClicked()">Search</button>
-        </form>
+  <div class="content-left">
+    <a href="/" class="nav-bar-text">FoodBook</a>
+  </div>
+  <div class="search-wrapper">
+    <form>
+      <input type="search" placeholder="Search FoodBook" [formControl]="searchInput" [matAutocomplete]="autocomplete">
+      <button type="submit" (click)="searchClicked()">Search</button>
+    </form>
 
-        <mat-autocomplete autoActiveFirstOption #autocomplete="matAutocomplete">
-            <mat-option *ngFor="let suggestion of suggestions" (click)="suggestionClicked(suggestion)">
-                {{ suggestion }}
-            </mat-option>
-        </mat-autocomplete>
-    </div>
-    <div class="content-right">
-        <p class="nav-bar-text">{{ user?.username }}</p>
-        <img
-            [matMenuTriggerFor]="dropdown"
-            [src]="user?.profilePicture ?? 'https://i.stack.imgur.com/l60Hf.png'"
-            protectedImage
-        />
-    </div>
+    <mat-autocomplete autoActiveFirstOption #autocomplete="matAutocomplete">
+      <mat-option *ngFor="let suggestion of suggestions" (click)="suggestionClicked(suggestion)">
+        {{ suggestion }}
+      </mat-option>
+    </mat-autocomplete>
+  </div>
+  <div class="content-right">
+    <p class="nav-bar-text">{{ user?.username }}</p>
+    <img
+      [matMenuTriggerFor]="dropdown"
+      [src]="user?.profilePicture ?? 'https://i.stack.imgur.com/l60Hf.png'"
+      protectedImage
+    />
+  </div>
 </div>
 
 <mat-menu #dropdown class="dropdown-menu">
-    <button *ngIf="isButtonVisible('latest')" mat-menu-item (click)="changeSearchMode('latest')">
-        Home<i class="fa-solid fa-house icon"></i>
-    </button>
-    <button *ngIf="isButtonVisible('saved')" mat-menu-item (click)="changeSearchMode('saved')">
-        Saved<i class="fa-solid fa-bookmark icon"></i>
-    </button>
-    <button *ngIf="isButtonVisible('shuffle')" mat-menu-item (click)="changeSearchMode('shuffle')">
-        Shuffle<i class="fa-solid fa-shuffle icon"></i>
-    </button>
-    <button mat-menu-item [routerLink]="['/', 'profile', user.userId]">Profile<i class="fa-solid fa-user icon"></i></button>
-    <button mat-menu-item (click)="logout()">Log out<i class="fa-solid fa-arrow-right-from-bracket icon"></i></button>
+  <button *ngIf="isButtonVisible('latest')" mat-menu-item (click)="changeSearchMode('latest')">
+    Home<i class="fa-solid fa-house icon"></i>
+  </button>
+  <button *ngIf="isButtonVisible('saved')" mat-menu-item (click)="changeSearchMode('saved')">
+    Saved<i class="fa-solid fa-bookmark icon"></i>
+  </button>
+  <button *ngIf="isButtonVisible('shuffle')" mat-menu-item (click)="changeSearchMode('shuffle')">
+    Shuffle<i class="fa-solid fa-shuffle icon"></i>
+  </button>
+  <button mat-menu-item [routerLink]="['/', 'profile', user.userId]">Profile<i class="fa-solid fa-user icon"></i>
+  </button>
+  <button mat-menu-item (click)="logout()">Log out<i class="fa-solid fa-arrow-right-from-bracket icon"></i></button>
+  <button mat-menu-item [routerLink]="['/', 'upload', 'unknown']">Upload dish<i class="fa-solid fa-plus icon"></i>
+  </button>
 </mat-menu>
