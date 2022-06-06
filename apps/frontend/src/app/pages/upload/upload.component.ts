@@ -39,11 +39,11 @@ export class UploadComponent implements OnInit {
 
     ngOnInit(): void {
         this.recipeForm = this.getRecipeForm();
-        this.editMode = this.requestedDishId != undefined;
+        this.editMode = this.requestedDishId != 'new';
         if (!this.editMode) {
             this.addIngredient();
             this.addStep();
-            this.dishService.createDish().subscribe((dish) => this.recipeForm.get('id').setValue(dish.id));
+            this.dishService.createDish().subscribe((dish) => {console.log(dish.id);this.recipeForm.get('id').setValue(dish.id)});
         } else {
             this.dishService.getDish(this.requestedDishId).subscribe({
                 next: (requestedDish) => {
@@ -73,7 +73,8 @@ export class UploadComponent implements OnInit {
     }
 
     openDeleteDialog(): void {
-        this.deleteDialog.open(DeleteDialogComponent, { data: this.recipeForm.value.id });
+      console.log(this.recipeForm.value)
+        //this.deleteDialog.open(DeleteDialogComponent, { data: this.recipeForm.value.id });
     }
 
     getRecipeForm(
