@@ -73,8 +73,7 @@ export class UploadComponent implements OnInit {
     }
 
     openDeleteDialog(): void {
-      console.log(this.recipeForm.value)
-        //this.deleteDialog.open(DeleteDialogComponent, { data: this.recipeForm.value.id });
+        this.deleteDialog.open(DeleteDialogComponent, { data: this.recipeForm.value.id });
     }
 
     getRecipeForm(
