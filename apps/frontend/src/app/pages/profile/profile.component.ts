@@ -4,6 +4,7 @@ import { AuthenticatorServiceInterface } from '../../services/authService/authen
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserDataService } from '../../services/userDataService/userData.service';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {Location} from "@angular/common";
 
 @Component({
     selector: 'app-profile',
@@ -17,7 +18,8 @@ export class ProfileComponent implements OnInit {
         private router: Router,
         private activeRoute: ActivatedRoute,
         private fb: FormBuilder,
-        private userData: UserDataService
+        private userData: UserDataService,
+        public location: Location
     ) {
         this.activeRoute.paramMap.subscribe((params) => {
             this.requestedUserId = params.get('id');
