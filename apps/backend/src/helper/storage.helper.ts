@@ -33,6 +33,14 @@ export class ProfilePictureStorage {
         }
         return 'https://i.stack.imgur.com/l60Hf.png';
     }
+
+    public static removeProfilePicture(req: Request, res: Response, next: express.NextFunction): void {
+        const path = `${ProfilePictureStorage._directory}/${req.params.profileId}`;
+        console.log(path)
+        fs.removeSync(path + '.jpg');
+        fs.removeSync(path + '.png');
+        next();
+    }
 }
 
 export class DishPictureStorage {
