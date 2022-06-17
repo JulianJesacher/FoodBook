@@ -91,12 +91,15 @@ export class ProfileComponent implements OnInit {
     }
 
     imageUpload(): void {
+        console.log("now")
         const files: FileList = this.imageInput.nativeElement.files;
         if (!files) {
             return;
         }
-        this.profileService.postImage(files[0], this.userData.user.userId).subscribe((profilePicture) => {
-            this.inputForm.get('profilePicture').setValue(profilePicture);
+        this.profileService.postImage(files[0], this.userData.user.userId).subscribe((userData) => {
+            console.log(userData);
+            this.inputForm.get('profilePicture').setValue(userData.profilePicture);
+            console.log(this.inputForm.get('profilePicture'))
         });
     }
 

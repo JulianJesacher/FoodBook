@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { IProfile, IProfileUpdate } from '@food-book/api-interface';
+import { IProfile, IProfileUpdate, IUserData } from '@food-book/api-interface';
 import {AppConfigurationService} from "../configurationService/app-configuration.service";
 
 @Injectable({
@@ -15,10 +15,10 @@ export class ProfileService {
     private serverHost: string;
     requestedProfile$: Subject<IProfile> = new Subject();
 
-    postImage(input: File, userId: string): Observable<string> {
+    postImage(input: File, userId: string): Observable<IUserData> {
         const formData: FormData = new FormData();
         formData.append('file', input, input.name);
-        return this.http.post<string>(`${this.serverHost}/profile/${userId}/image`, formData);
+        return this.http.post<IUserData>(`${this.serverHost}/profile/${userId}/image`, formData);
     }
 
     getProfile(userId: string): Observable<IProfile> {
