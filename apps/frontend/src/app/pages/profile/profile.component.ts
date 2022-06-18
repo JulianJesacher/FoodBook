@@ -97,9 +97,7 @@ export class ProfileComponent implements OnInit {
             return;
         }
         this.profileService.postImage(files[0], this.userData.user.userId).subscribe((userData) => {
-            console.log(userData);
             this.inputForm.get('profilePicture').setValue(userData.profilePicture);
-            console.log(this.inputForm.get('profilePicture'))
         });
     }
 
