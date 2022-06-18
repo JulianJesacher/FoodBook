@@ -13,7 +13,7 @@ export class Step extends BaseEntity implements IStep {
     @Column()
     content: string;
 
-    @ManyToOne(() => Dish, (dish) => dish.steps)
+    @ManyToOne(() => Dish, (dish) => dish.steps, {onDelete: "CASCADE"})
     dish: Dish;
 
     constructor(content: string, number: number, dish: Dish) {

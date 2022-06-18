@@ -41,6 +41,9 @@ export class DishController {
     public static async removeDish(req: Request, res: Response): Promise<void> {
         const dish: Dish = res.locals.dish;
         DishPictureStorage.removeDirectoryAndAllImages(dish.id);
+        dish.ingredients.forEach(async (ingredient) => await ingredient.remove());
+        dish.steps.forEach(async (step) => await step.remove());
+        dish.savedBy.forEach(async (saved) => await saved.remove());
         await dish.remove();
         res.sendStatus(204);
     }

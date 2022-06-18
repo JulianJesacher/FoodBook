@@ -10,10 +10,10 @@ export class Rating extends BaseEntity {
     @Column()
     ratingNumber: number;
 
-    @ManyToOne(() => Dish, (dish) => dish.ratings)
+    @ManyToOne(() => Dish, (dish) => dish.ratings, {onDelete: "CASCADE"})
     dish: Dish;
 
-    @ManyToOne(() => User, (user) => user.ratings)
+    @ManyToOne(() => User, (user) => user.ratings, {onDelete: "CASCADE"})
     user: User;
 
     constructor(ratingNumber: number, user: User, dish: Dish) {

@@ -50,7 +50,7 @@ export class Dish extends BaseEntity implements Omit<IDish, 'postedBy' | 'images
     @OneToMany(() => Step, (step) => step.dish, { cascade: true })
     steps: Step[];
 
-    @ManyToOne(() => User, (user) => user.dishes, { eager: true })
+    @ManyToOne(() => User, (user) => user.dishes, { eager: true , onDelete: "CASCADE"})
     postedBy: User;
 
     @OneToMany(() => Rating, (rating) => rating.dish, { eager: true })

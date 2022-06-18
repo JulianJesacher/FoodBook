@@ -28,7 +28,7 @@ export class Ingredient extends BaseEntity implements IIngredient {
     })
     unit: string;
 
-    @ManyToOne(() => Dish, (dish) => dish.ingredients)
+    @ManyToOne(() => Dish, (dish) => dish.ingredients, {onDelete: "CASCADE"})
     dish: Dish;
 
     constructor(ingredientData: IIngredientUpload, dish?: Dish) {
