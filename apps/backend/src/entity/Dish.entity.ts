@@ -24,7 +24,7 @@ export class Dish extends BaseEntity implements Omit<IDish, 'postedBy' | 'images
     @Column()
     title: string;
 
-    @Column()
+    @Column({length: 5000})
     description: string;
 
     @Column()
