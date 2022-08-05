@@ -27,6 +27,17 @@
 
 .nav-bar-right {
     margin-right: var(--margin-left-right, 1.5em);
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+
+    button{
+        background: none;
+        outline: none;
+        border: none;
+        font-size: 1em;
+        margin-right: 0.75em;
+    }
 
     p {
         font-size: 1em;
