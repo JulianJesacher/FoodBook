@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
     }
 
     guestLogin() {
-        this.authService.login({ email: 'Guest', password: 'guestAccountPassword' }).subscribe({
+        this.authService.login({ email: 'guest@email.com', password: 'guestAccountPassword' }).subscribe({
             next: () => {
                 this.router.navigateByUrl('/home');
             },
